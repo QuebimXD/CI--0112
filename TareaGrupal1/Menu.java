@@ -27,10 +27,19 @@ public class Menu{
                 entrenador.verCatalogoPokemon();
                 opcion1 = scanner.nextInt();
                 if (opcion1 >=0)
-                    pokemon1 = getPokemon(opcion);
-                    entrenador.agregarAlEquipoPokemon();
+                    Pokemon pokemon1 = entrenador.getPokemon(opcion1);
+                    entrenador.agregarAlEquipoPokemon(pokemon1);
+                }
                 opcion2 = scanner.nextInt();
+                if (opcion2 >= 0){
+                    Pokemon pokemon2 = entrenador.getPokemon(opcion2);
+                    entrenador.agregarAlEquipoPokemon(pokemon2);
+                }
                 opcion3 = scanner.nextInt();
+                if (opcion3 >= 0){
+                    Pokemon pokemon3 = entrenador.getPokemon(opcion)
+                }
+
             }
         } catch (Excpetion e) {
         }
