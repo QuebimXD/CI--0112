@@ -12,6 +12,7 @@ public class Menu{
             gimnasio.setNombreEntrenador(nombre);
             System.out.println("Escoja a sus tres pokemon iniciales:");
             seleccionJugador();
+            System.out.println("Empecemos el juego.");
             }
     }
     public void seleccionJugador(){
@@ -37,11 +38,12 @@ public class Menu{
                 }
                 opcion3 = scanner.nextInt();
                 if (opcion3 >= 0){
-                    Pokemon pokemon3 = entrenador.getPokemon(opcion)
+                    Pokemon pokemon3 = entrenador.getPokemon(opcion3);
+                    entrenador.agregarAlEquipoPokemon(pokemon3);
                 }
-
             }
         } catch (Excpetion e) {
+            System.out.println("Escoja un número válido.")
         }
 
     }
