@@ -1,61 +1,75 @@
 public class Pokemon{
-    private String NombreP;
-    private int Nivel;
-    private int Vida;
-    private int Ataque;
-    private int Defensa;
-    private int Velocidad;
-    private boolean Estado;
+    private String nombreP;
+    private int nivelP;
+    private int vidaP;
+    private Elemento elementoP;
+    private int ataqueP;
+    private int defensaP;
+    private int velocidadP;
+    private boolean estadoP;
+    private Ataque[] ataquesP;
 
-    public Pokemon(){
-        NombreP = "";
-        Nivel = 0;
-        Vida = 0;
-        Ataque = 0;
-        Defensa = 0;
-        Velocidad = 0;
-        Estado = true;
+    public Pokemon(String nP, int nivP, int vidaP, Elemento eP, int aP, int dP, int vP, boolean estP, Ataque[] ats){
+        this.nombreP = nP;
+        this.nivelP = nivP;
+        this.vidaP = vidaP;
+        this.elementoP = eP;
+        this.ataqueP = aP;
+        this.defensaP = dP;
+        this.velocidadP = vP;
+        this.estadoP = estP;
+        this.ataquesP = ats;
     }
+    
     public String getNombreP(){
-        return NombreP;
+        return nombreP;
     }
     public void setNombreP(String nombre){
-        NombreP = nombre;
+        nombreP = nombre;
     }
-    public int getNivel(){
-        return Nivel;
+    public int getNivelP(){
+        return nivelP;
     }
-    public void setNivel(int nivel){
-        Nivel = nivel;
+    public void setNivelP(int nivel){
+        nivelP = nivel;
     }
-    public int getVida(){
-        return Vida;
+    public int getVidaP(){
+        return vidaP;
     }
-    public void setVida(int vida){
-        Vida = vida;
+    public void setVidaP(int vida){
+        vidaP = vida;
     }
-    public int getAtaque(){
-        return Ataque;
+    public int getAtaqueP(){
+        return ataqueP;
     }
-    public void setAtaque(int ataque){
-        Ataque = ataque;
+    public void setAtaqueP(int ataque){
+        ataqueP = ataque;
     }
-    public int getDefensa(){
-        return Defensa;
+    public int getDefensaP(){
+        return defensaP;
     }
-    public void setDefensa(int defensa){
-        Defensa = defensa;
+    public void setDefensaP(int defensa){
+        defensaP = defensa;
     }
-    public int getVelocidad(){
-        return Velocidad;
+    public int getVelocidadP(){
+        return velocidadP;
     }
-    public void setVelocidad(int velocidad){
-        Velocidad = velocidad;
+    public void setVelocidadP(int velocidad){
+        velocidadP = velocidad;
     }
-    public boolean getEstado(){
-        return Estado;
+    public boolean getEstadoP(){
+        return estadoP;
     }
-    public void setEstado(boolean estado){
-        Estado = estado;
+    public void setEstadoP(boolean estado){
+        estadoP = estado;
+    }
+    public Elemento getElementoP(){
+        return elementoP;
+    }
+    public void setElementoP(Elemento e){
+        this.elementoP = e;
+    }
+    public Ataque[] getAtaquesP(){
+        return ataquesP;
     }
 }

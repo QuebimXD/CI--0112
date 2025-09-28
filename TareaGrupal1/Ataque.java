@@ -5,25 +5,13 @@ public class Ataque{
     private int ppMaxA;
     private int ppActualA;
     private int precisionA;
-    private Elemento[] catalogoE;
 
     public Ataque(String n, Elemento e, int pot, int pM, int pre){
         this.nombreA = n;
         this.elementoA = e;
         this.potenciaA = pot;
-        this.ppMaxA = pM;
         this.ppActualA = pM; //El pp actual es el maximo al inicio de cada Pokemon >:D
         this.precisionA = pre;
-
-        this.catalogoE = new Elemento [] {
-            new Elemento("Fuego", "Agua", "Planta"),
-            new Elemento("Agua", "Planta", "Fuego"),
-            new Elemento("Planta", "Fuego", "Agua"),
-            new Elemento("Electrico", "Roca", "Agua"),
-            new Elemento("Veneno", "Roca", "Planta"),
-            new Elemento("Roca", "Agua", "Veneno"),
-        };
-
     }
 
     public String getNombreA(){
