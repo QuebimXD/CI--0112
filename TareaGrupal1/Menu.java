@@ -28,22 +28,22 @@ public class Menu{
                 entrenador.verCatalogoPokemon();
                 opcion1 = scanner.nextInt();
                 if (opcion1 >=0)
-                    Pokemon pokemon1 = entrenador.getPokemon(opcion1);
+                    Pokemon pokemon1 = entrenador.getPokemonCatalogo(opcion1);
                     entrenador.agregarAlEquipoPokemon(pokemon1);
                 }
                 opcion2 = scanner.nextInt();
                 if (opcion2 >= 0){
-                    Pokemon pokemon2 = entrenador.getPokemon(opcion2);
+                    Pokemon pokemon2 = entrenador.getPokemonCatalogo(opcion2);
                     entrenador.agregarAlEquipoPokemon(pokemon2);
                 }
                 opcion3 = scanner.nextInt();
                 if (opcion3 >= 0){
-                    Pokemon pokemon3 = entrenador.getPokemon(opcion3);
+                    Pokemon pokemon3 = entrenador.getPokemonCatalogo(opcion3);
                     entrenador.agregarAlEquipoPokemon(pokemon3);
                 }
-            }
-        } catch (Excpetion e) {
-            System.out.println("Escoja un número válido.")
+        }
+         catch (Excpetion e) {
+            System.out.println("Escoja un número válido.");
         }
 
     }
