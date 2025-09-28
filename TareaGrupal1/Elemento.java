@@ -7,8 +7,6 @@ public class Elemento {
             this.nombre = nombre;
             this.debilidad = debilidad;
             this.fortaleza = fortaleza;
-            
-
     }
 
     public void setNombre(String nombre){
