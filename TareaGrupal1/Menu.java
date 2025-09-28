@@ -13,6 +13,11 @@ public class Menu{
             System.out.println("Escoja a sus tres pokemon iniciales:");
             seleccionJugador();
             System.out.println("Empecemos el juego.");
+            System.out.println("Esto son los entrenadores con los cuales vas a competir: ");
+            gimnasio.mostrarEntrenadores();
+            System.out.println("Empieza tu primera batalla. ");
+            int entrenadoresDerrotados = 0;
+            gimnasio.combate(getEntrenador(0));
             }
     }
     public void seleccionJugador(){
@@ -23,11 +28,11 @@ public class Menu{
         Entrenador entrenador = new Entrenador();
         entrenador.verCatalogo();
         try {
-            while(opcion1<=0 & opcion2 <= 0 & opcion3 <= 0){
+            while(opcion1<=0 || opcion2 <= 0 || opcion3 <= 0){
                 System.out.println("Escoja tres pokemon de la siguiente lista.");
                 entrenador.verCatalogoPokemon();
                 opcion1 = scanner.nextInt();
-                if (opcion1 >=0)
+                if (opcion1 >=0){
                     Pokemon pokemon1 = entrenador.getPokemonCatalogo(opcion1);
                     entrenador.agregarAlEquipoPokemon(pokemon1);
                 }
@@ -41,8 +46,11 @@ public class Menu{
                     Pokemon pokemon3 = entrenador.getPokemonCatalogo(opcion3);
                     entrenador.agregarAlEquipoPokemon(pokemon3);
                 }
+                System.out.println("¡Listo! Este es tu equipo pókemon: ");
+                entrenador.mostrarEquipoPokemon();
+            }
         }
-         catch (Excpetion e) {
+         catch (Exception e) {
             System.out.println("Escoja un número válido.");
         }
 
