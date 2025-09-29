@@ -91,7 +91,11 @@ public class CatalogoP{
                 ataques.getAtaqueRapido()
             });
 
-       
+    public void desplegarCatalogo(){
+        for(int i = 0 ; i < listaP.length; i++){
+            System.out.println((i+1) + ": " + listaP[i]);
+        }
+    }
 
     
 }

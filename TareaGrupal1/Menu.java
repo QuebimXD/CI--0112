@@ -2,6 +2,7 @@ import java.util.Scanner;
 public class Menu{
     private Entrenador entrenador;
     private Gimnasio gimnasio;
+    private CatalogoP pokemones;
 
     public Menu(){
         gimnasio = new Gimnasio();
@@ -13,7 +14,7 @@ public class Menu{
         nombre = scanner.nextLine();
         gimnasio.setNombreEntrenador(nombre);
         System.out.println("Escoja a sus tres pokemon iniciales:");
-        seleccionJugador();
+        seleccionJugador(entrenador);
 
         int opcion = 0;
         while (opcion <= 0){
@@ -62,10 +63,10 @@ public class Menu{
         try {
             while(opcion1<=0 || opcion2 <= 0 || opcion3 <= 0){
                 System.out.println("Escoja tres pokemon de la siguiente lista.");
-                entrenador.verCatalogoPokemon();
-                opcion1 = scanner.nextInt();
+                pokemones.desplegarCatalogo();
+                opcion1 = scanner.nextInt() -1;
                 if (opcion1 >=0){
-                    Pokemon pokemon1 = entrenador.getPokemonCatalogo(opcion1);
+                    Pokemon pokemon1 = buscarP(opcion1)
                     entrenador.agregarAlEquipoPokemon(pokemon1);
                 }
                 opcion2 = scanner.nextInt();
@@ -87,4 +88,14 @@ public class Menu{
         }
 
     }
+
+    public Pokemon buscarP(int i){
+        for(int j = 0; j < pokemones.length; j++){
+            if(i == pokemones[j]):{
+                Pokemon p = pokemones[i];
+            }
+        }
+        return p;
+    }
+
 }
