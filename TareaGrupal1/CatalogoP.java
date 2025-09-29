@@ -96,6 +96,9 @@ public class CatalogoP{
             System.out.println((i+1) + ": " + listaP[i]);
         }
     }
+    public Pokemon[] getListaP(){
+        return listaP;
+    }
 
     
 }
