@@ -13,7 +13,7 @@ public class Entrenador {
     public boolean equipoDebilitado(){
         int pokemonesDerrotados = 0;
         for (int i = 0; i < equipoPokemon.length; i++){
-            if(equipoPokemon[i].getVida() == 0){
+            if(equipoPokemon[i].getVidaP() == 0){
                 pokemonesDerrotados++;
             }
         }
@@ -33,20 +33,20 @@ public class Entrenador {
             i++;
         }
             if(equipoPokemon[i-1] != null){
-                Pokemon [] listaTemp = new Pokemon[equipoPokemon.length];
+                Pokemon [] listaTemp = new Pokemon[equipoPokemon.length + 1];
                 for(int j = 0; j<equipoPokemon.length; j++){
                     listaTemp[j] = equipoPokemon[j];
                 }
-                listaTemp[i-1] = pokemon;
+                listaTemp[i] = pokemon;
                 equipoPokemon = listaTemp;
             }
     }
     public void mostrarInfoEquipoPokemon(){
         for(int j = 0; j < equipoPokemon.length; j++){
             Pokemon i = equipoPokemon[j];
-            System.out.println("Nombre: " + i.getNombreP() + "\nVida: " + i.getVida() + "\nNivel: " + i.getNivel() +
-                                "\nAtaque: " + i.getAtaque() + "\nDefensa: " + i.getDefensa() + "\nVelocidad: " + 
-                                i.getVelocidad() + "\nEstado: " + i.getEstado());
+            System.out.println("Nombre: " + i.getNombreP() + "\nVida: " + i.getVidaP() + "\nNivel: " + i.getNivelP() +
+                                "\nAtaque: " + i.getAtaqueP() + "\nDefensa: " + i.getDefensaP() + "\nVelocidad: " + 
+                                i.getVelocidadP() + "\nEstado: " + i.getEstadoP());
         }
     }
     public void mostrarEquipoPokemon(){
