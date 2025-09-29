@@ -19,7 +19,7 @@ public class Menu{
         while (opcion <= 0){
 
             System.out.println("Empecemos el juego. Escoja una de las siguientes opciones:\n " +
-                              "1-Entrar al gimnasio.\n 2-Ver a los entrenadores\n "+
+                              "1-Entrar al gimnasio.\n 2-Ver a los entrenadores\n " +
                               "3-Ver mis pokemones y sus estadísticas.\n " +
                               "4-Salir");
             try {
@@ -27,13 +27,8 @@ public class Menu{
                 if(opcion == 1){
                     System.out.println("Empieza tu primera batalla.");
                     int entrenadoresDerrotados = 0;
-                    while (entrenadoresDerrotados < 4){
-                        gimnasio.combate(gimnasio.getEntrenador(entrenadoresDerrotados));
-                        if(!entrenador.equipoDebilitado()){
-                        entrenadoresDerrotados++;
-                        }
-                        System.out.println("¡Has logrado terminar el gimmnasio!");
-                    }
+                    gimnasio.combate();
+                    System.out.println("¡Has logrado terminar el gimmnasio!");
                 }
                 else if (opcion == 2){
                     System.out.println("Esto son los entrenadores con los cuales vas a competir: ");

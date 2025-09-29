@@ -7,7 +7,9 @@ public class Entrenador {
         this.nombre = nombre;   
         equipoPokemon = new Pokemon[2];
     }
-
+    public Pokemon [] getEquipoPokemon(){
+        return equipoPokemon;
+    }
     public boolean equipoDebilitado(){
         int pokemonesDerrotados = 0;
         for (int i = 0; i < equipoPokemon.length; i++){
