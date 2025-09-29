@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class Menu{
     private Entrenador entrenador;
     private Gimnasio gimnasio;
-    private CatalogoP pokemones;
+    private CatalogoP pokemones = new CatalogoP();
 
     public Menu(){
         gimnasio = new Gimnasio();
@@ -14,7 +14,7 @@ public class Menu{
         nombre = scanner.nextLine();
         gimnasio.setNombreEntrenador(nombre);
         System.out.println("Escoja a sus tres pokemon iniciales:");
-        seleccionJugador(entrenador);
+        seleccionJugador();
 
         int opcion = 0;
         while (opcion <= 0){
@@ -66,17 +66,17 @@ public class Menu{
                 pokemones.desplegarCatalogo();
                 opcion1 = scanner.nextInt() -1;
                 if (opcion1 >=0){
-                    Pokemon pokemon1 = buscarP(opcion1)
+                    Pokemon pokemon1 = buscarP(opcion1);
                     entrenador.agregarAlEquipoPokemon(pokemon1);
                 }
-                opcion2 = scanner.nextInt();
+                opcion2 = scanner.nextInt() -1;
                 if (opcion2 >= 0){
-                    Pokemon pokemon2 = entrenador.getPokemonCatalogo(opcion2);
+                    Pokemon pokemon2 = buscarP(opcion2);
                     entrenador.agregarAlEquipoPokemon(pokemon2);
                 }
-                opcion3 = scanner.nextInt();
+                opcion3 = scanner.nextInt() -1;
                 if (opcion3 >= 0){
-                    Pokemon pokemon3 = entrenador.getPokemonCatalogo(opcion3);
+                    Pokemon pokemon3 = buscarP(opcion3);
                     entrenador.agregarAlEquipoPokemon(pokemon3);
                 }
                 System.out.println("¡Listo! Este es tu equipo pókemon: ");
@@ -89,10 +89,13 @@ public class Menu{
 
     }
 
+
+
     public Pokemon buscarP(int i){
-        for(int j = 0; j < pokemones.length; j++){
-            if(i == pokemones[j]):{
-                Pokemon p = pokemones[i];
+        Pokemon p = null;
+        for(int j = 0; j < pokemones.getListaP().length; j++){
+            if(i == j){
+               p = pokemones.getListaP()[i];
             }
         }
         return p;
