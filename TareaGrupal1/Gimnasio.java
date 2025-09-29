@@ -3,6 +3,8 @@ public class Gimnasio {
     private String NombreEU;
     private String Ataque;
     private Pokemon pokemon;
+    private Entrenador[] entrenadores;
+    CatalogoP pokemones = new CatalogoP();
 
     public Gimnasio(){
         NombreEU = "";
@@ -45,5 +47,15 @@ public class Gimnasio {
         int daño = (((2 * nivel / 5 + 2)* potencia * presicion/ defensa)/ 50) + 2;
         return daño;
     }
+
+    public void entrenadores(){
+
+    }
+
+    Entrenador llama = new Entrenador("Axel Llama", 
+    new Pokemon[]{
+            pokemones.getListaP(0),
+            pokemones.getListaP(6)
+    });
 
 }
