@@ -58,7 +58,8 @@ public class CatalogoA{
 
     public Ataque getImpactrueno(){
         return impactrueno;
-    }public Ataque getRayo(){
+    }
+    public Ataque getRayo(){
         return rayo;
     }
 
