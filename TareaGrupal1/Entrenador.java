@@ -10,6 +10,13 @@ public class Entrenador {
     public Pokemon [] getEquipoPokemon(){
         return equipoPokemon;
     }
+
+    public Pokemon getPrimerPokemon(){
+        if (equipoPokemon[0] == null){
+            System.out.println("Este equipo aún no tiene pokemones asignados.");
+        }
+        return equipoPokemon[0];
+    }
     public boolean equipoDebilitado(){
         int pokemonesDerrotados = 0;
         for (int i = 0; i < equipoPokemon.length; i++){
