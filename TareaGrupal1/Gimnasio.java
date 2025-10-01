@@ -52,10 +52,25 @@ public class Gimnasio {
 
     }
 
-    Entrenador llama = new Entrenador("Axel Llama", 
+    Entrenador fuego = new Entrenador("Axel Llama", 
     new Pokemon[]{
             pokemones.getListaP(0),
             pokemones.getListaP(6)
     });
-
+    Entrenador agua = new Entrenador("Mariana Azul", 
+    new Pokemon[]{
+            pokemones.getListaP(1),
+            pokemones.getListaP()
+    });
+    Entrenador planta = new Entrenador("Raimundo Raiz", 
+    new Pokemon[]{
+            pokemones.getListaP(2),
+            pokemones.getListaP()
+    });
+    Entrenador lider = new Entrenador("Violeta Prisma", 
+    new Pokemon[]{
+            pokemones.getListaP(4),
+            pokemones.getListaP(7),
+            pokemones.getListaP(8)
+    });
 }
