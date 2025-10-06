@@ -36,7 +36,7 @@ public class Entrenador {
     public boolean equipoDebilitado(){
         int pokemonesDerrotados = 0;
         for (int i = 0; i < equipoPokemon.length; i++){
-            if(equipoPokemon[i].getVidaP() == 0){
+            if(equipoPokemon[i].getVidaP() <= 0){
                 pokemonesDerrotados++;
             }
         }
@@ -45,6 +45,7 @@ public class Entrenador {
         }
         return false;
     }
+    
     public void agregarAlEquipoPokemon(Pokemon pokemon){
         int i = 0;
         boolean seAgrego = false;

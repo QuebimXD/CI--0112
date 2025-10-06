@@ -85,7 +85,9 @@ public class Gimnasio {
 
     public Pokemon elegirPokemonUsuario(Entrenador e){
         if(e.equipoDebilitado()){
+            System.out.println("CARTERA");
             System.out.println("Te has quedado sin pokemones");
+            
             return null;
         }
         boolean elegido = false;
@@ -116,30 +118,30 @@ public class Gimnasio {
     }
    
     public void logicaCombate(Entrenador usuario){
-        boolean gymActivo = true;
-        while(gymActivo){
-            for(int i = 0; i < entrenadores.length; i++){
-                Entrenador entrenador = entrenadores[i];
-                System.out.println("Comienza el combate contra : " + entrenador.getNombreE() + "\n");
+        for(int i = 0; i < entrenadores.length; i++){
+            Entrenador entrenador = entrenadores[i];
+            System.out.println("Comienza el combate contra : " + entrenador.getNombreE() + "\n");
 
-                while(!usuario.equipoDebilitado() && verificacionNPCactivo(entrenador)){
-                    Pokemon pokeUsuario = elegirPokemonUsuario(usuario);
-                    for(int j = 0; j < entrenador.largoListaP(); j++){
-                        Pokemon pokeNPC = entrenador.getEquipoPokemon(j);
+            while(!usuario.equipoDebilitado() && verificacionNPCactivo(entrenador)){
+                Pokemon pokeUsuario = elegirPokemonUsuario(usuario);
+
+                if(pokeUsuario==null){
+                    System.out.println("Te quedaste sin pokemones gg");
+                    return;
+                }
+
+                for(int j = 0; j < entrenador.largoListaP(); j++){
+                    Pokemon pokeNPC = entrenador.getEquipoPokemon(j);
                         
-                        if(pokeNPC.getEstadoP()){
-                            combate(pokeUsuario, pokeNPC);
-                        }                  
-                    }
-                }   
-            if(usuario.equipoDebilitado()){
-                System.out.println("Te has quedado sin pokemones, gg");
-                return;
-            }
-            System.out.println("Has vencido a " + entrenador.getNombreE());
+                    if(pokeNPC.getEstadoP()){
+                        combate(pokeUsuario, pokeNPC);
+                    }                  
+                }
+            }   
+        System.out.println("Has vencido a " + entrenador.getNombreE());
+        
         }
         System.out.println("Has vencido a todos los entrenadores");
-        }
     }
 
     public void combate(Pokemon p1, Pokemon p2){
