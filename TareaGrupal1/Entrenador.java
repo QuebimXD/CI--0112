@@ -7,6 +7,11 @@ public class Entrenador {
         this.nombre = nombre;   
         equipoPokemon = new Pokemon[2];
     }
+
+    public Entrenador(String nombre, Pokemon [] equipoPokemon){
+        this.nombre = nombre;
+        this.equipoPokemon = equipoPokemon;
+    }
     public Pokemon [] getEquipoPokemon(){
         return equipoPokemon;
     }
