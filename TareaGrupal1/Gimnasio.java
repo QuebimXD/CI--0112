@@ -49,7 +49,7 @@ public class Gimnasio {
         Scanner sc = new Scanner(System.in);
         int opt = -1;
         Ataque ataqueElegido = null;
-        while(opt <= 1 || opt > 4){
+        while(opt <= 0 || opt > 4){
             System.out.println("Elija un ataque:"  + "\n");
             p.mostrarAtaques();
             opt = sc.nextInt();
@@ -84,6 +84,10 @@ public class Gimnasio {
     }
 
     public Pokemon elegirPokemonUsuario(Entrenador e){
+        if(e.equipoDebilitado()){
+            System.out.println("Te has quedado sin pokemones");
+            return null;
+        }
         boolean elegido = false;
         Pokemon pokemonE = null;
         Scanner sc = new Scanner(System.in);
@@ -112,25 +116,29 @@ public class Gimnasio {
     }
    
     public void logicaCombate(Entrenador usuario){
-        
-        for(int i = 0; i < entrenadores.length; i++){
-
-            boolean NPC = verificacionNPCactivo();
-            while(NPC == false){
-                i++;
-                NPC = verificacionNPCactivo();
-            }
-
-            while(!(usuario.equipoDebilitado())){
+        boolean gymActivo = true;
+        while(gymActivo){
+            for(int i = 0; i < entrenadores.length; i++){
                 Entrenador entrenador = entrenadores[i];
                 System.out.println("Comienza el combate contra : " + entrenador.getNombreE() + "\n");
-                for(int j = 0; j < entrenador.largoListaP(); j++){
-                    Pokemon pokeUsuario = elegirPokemonUsuario(usuario);
-                    Pokemon pokeNPC = entrenador.getEquipoPokemon(j);
-                    combate(pokeUsuario, pokeNPC);
 
-                }
+                while(!usuario.equipoDebilitado() && verificacionNPCactivo(entrenador)){
+                    Pokemon pokeUsuario = elegirPokemonUsuario(usuario);
+                    for(int j = 0; j < entrenador.largoListaP(); j++){
+                        Pokemon pokeNPC = entrenador.getEquipoPokemon(j);
+                        
+                        if(pokeNPC.getEstadoP()){
+                            combate(pokeUsuario, pokeNPC);
+                        }                  
+                    }
+                }   
+            if(usuario.equipoDebilitado()){
+                System.out.println("Te has quedado sin pokemones, gg");
+                return;
             }
+            System.out.println("Has vencido a " + entrenador.getNombreE());
+        }
+        System.out.println("Has vencido a todos los entrenadores");
         }
     }
 
@@ -185,13 +193,13 @@ public class Gimnasio {
 
         }
 
-        if(p1.getVidaP() <0 ){
+        if(p1.getVidaP() <=0 ){
             p1.setEstadoP(false);
             System.out.println("Tu pokemon " + p1.getNombreP() + " Se ha debilitado :(" + "\n");
         }
-        if(p2.getVidaP() <0){
+        if(p2.getVidaP() <=0){
              p2.setEstadoP(false);
-             System.out.println("El pokemon del rival " + p2.getNombreP() + "Se ha debilitado" + "\n");
+             System.out.println("El pokemon del rival " + p2.getNombreP() + " se ha debilitado" + "\n");
         }
     }
 
@@ -221,10 +229,14 @@ public class Gimnasio {
     public boolean verificacionNPCactivo(Entrenador e){
         int contador = 0;
         for(int i = 0; i < e.largoListaP(); i++){
-            if(){
-                
+            if(e.getEquipoPokemon(i).getEstadoP() == false){
+                contador ++;
             }
         }
+        if(contador == e.largoListaP()){
+            return false;
+        }
+        return true;
     }
     
 
