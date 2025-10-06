@@ -72,11 +72,12 @@ public class Pokemon{
     public Ataque[] getAtaquesP(){
         return ataquesP;
     }
-    public void mostrarInfoAtaque(){
+    public void mostrarAtaques(){
         for (int i = 0; i <ataquesP.length; i++){
             Ataque a = ataquesP[i];
-            System.out.println(i + 1 + "Nombre: " + a.getNombreA()+ "Elemento: " + a.getElementoA() +
-                                a.getPotenciaA() + a.getPpActualA() + a.getPrecisionA());
+            System.out.println(i + 1 + "Nombre: " + a.getNombreA() + "\nElemento: " + a.getElementoA() +
+             "\nPotencia: " + a.getPotenciaA() + "n\PP disponible: " a.getPpActualA() + 
+             "\nPrecision: " + a.getPrecisionA());
         } 
     }
 }
