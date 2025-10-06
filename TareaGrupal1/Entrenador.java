@@ -55,27 +55,27 @@ public class Entrenador {
             }
             i++;
         }
-            if(equipoPokemon[i-1] != null){
-                Pokemon [] listaTemp = new Pokemon[equipoPokemon.length + 1];
-                for(int j = 0; j<equipoPokemon.length; j++){
-                    listaTemp[j] = equipoPokemon[j];
-                }
-                listaTemp[i] = pokemon;
-                equipoPokemon = listaTemp;
-            }
     }
     public void mostrarInfoEquipoPokemon(){
+        String estado = "";
         for(int j = 0; j < equipoPokemon.length; j++){
+            
             Pokemon i = equipoPokemon[j];
+            if(i.getEstadoP()){
+                estado = "Vivo";
+            } 
+            else {
+                estado = "Debilitado";
+            }
             System.out.println("Nombre: " + i.getNombreP() + "\nVida: " + i.getVidaP() + "\nNivel: " + i.getNivelP() +
                                 "\nAtaque: " + i.getAtaqueP() + "\nDefensa: " + i.getDefensaP() + "\nVelocidad: " + 
-                                i.getVelocidadP() + "\nEstado: " + i.getEstadoP());
+                                i.getVelocidadP() + "\nEstado: " + estado + "\n");
         }
     }
     public void mostrarEquipoPokemon(){
         for (int i = 0; i<equipoPokemon.length; i++){
             Pokemon j = equipoPokemon[i];
-            System.out.println("Nombre: " + j.getNombreP());
+            System.out.println((i+1) +"Nombre: " + j.getNombreP());
         }
     }
 }

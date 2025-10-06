@@ -35,9 +35,11 @@ public class Menu{
                 else if (opcion == 2){
                     System.out.println("Esto son los entrenadores con los cuales vas a competir: ");
                     gimnasio.mostrarEntrenadores();
+                    opcion = -1;
                 }
                 else if (opcion == 3){
                     usuario.mostrarInfoEquipoPokemon();
+                    opcion = -1;
                 }
                 else if (opcion == 4){
                     break;
@@ -61,21 +63,21 @@ public class Menu{
             while(opcion1<=0 || opcion2 <= 0 || opcion3 == 0){
                 System.out.println("Escoja tres pokemon de la siguiente lista.");
                 pokemones.desplegarCatalogo();
-                opcion1 = scanner.nextInt() -1;
+                opcion1 = scanner.nextInt();
                 if (opcion1 >=0 && opcion1 <= pokemones.longCatalogo()){
-                    Pokemon pokemon1 = buscarP(opcion1);
+                    Pokemon pokemon1 = buscarP(opcion1 - 1);
                     usuario.agregarAlEquipoPokemon(pokemon1);
                 }
                 System.out.println("Escoja su segundo pokemon");
-                opcion2 = scanner.nextInt() -1;
+                opcion2 = scanner.nextInt();
                 if (opcion2 >= 0 && opcion2 <= pokemones.longCatalogo()){
-                    Pokemon pokemon2 = buscarP(opcion2);
+                    Pokemon pokemon2 = buscarP(opcion2 - 1);
                     usuario.agregarAlEquipoPokemon(pokemon2);
                 }
                 System.out.println("Escoja su tecer pokemon");
-                opcion3 = scanner.nextInt() -1;
+                opcion3 = scanner.nextInt();
                 if (opcion3 >= 0 && opcion3 <= pokemones.longCatalogo()){
-                    Pokemon pokemon3 = buscarP(opcion3);
+                    Pokemon pokemon3 = buscarP(opcion3 - 1);
                     usuario.agregarAlEquipoPokemon(pokemon3);
                 }
                 
