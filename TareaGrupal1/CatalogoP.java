@@ -18,6 +18,7 @@ public class CatalogoP{
         listaP[8] = rhydon;
         listaP[9] = arbok;
         listaP[10] = piplup;
+        listaP[11] = pansage;
     }
 
             Pokemon charizard = new Pokemon("Charizard", 50, 200, elementos.getFuego(), 84, 78, 100, true, 

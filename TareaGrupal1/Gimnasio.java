@@ -60,12 +60,12 @@ public class Gimnasio {
     Entrenador agua = new Entrenador("Mariana Azul", 
     new Pokemon[]{
             pokemones.getListaP(1),
-            pokemones.getListaP()
+            pokemones.getListaP(10)
     });
     Entrenador planta = new Entrenador("Raimundo Raiz", 
     new Pokemon[]{
             pokemones.getListaP(2),
-            pokemones.getListaP()
+            pokemones.getListaP(11)
     });
     Entrenador lider = new Entrenador("Violeta Prisma", 
     new Pokemon[]{
