@@ -1,11 +1,12 @@
 import java.util.Random;
 public class Gimnasio {
     private String NombreEU;
+    private Entrenador usuario;
     private String Ataque;
     private Pokemon pokemon;
     private Entrenador[] entrenadores;
     CatalogoP pokemones = new CatalogoP();
-    
+
     public Gimnasio(){
         NombreEU = "";
     entrenadores = new Entrenadores[4] = {fuego, agua, planta, lider};
@@ -60,21 +61,34 @@ public class Gimnasio {
         System.out.println("Comienza el combate");
         entrenadoresDerrotados = 0;
         while(entrenadoresDerrotados < 4){
-            System.out.println("Es turno de combatir contra:" )
+            if(usuario.equipoDebilitado()){
+                System.out.println("¡Has perdido!");
+                entrenadoresDerrotados = 5;
+            }
+            else{
+                System.out.println("Es turno de combatir contra:" + entrenadores[entrenadoresDerrotados].getNombre());
+                Entrenador entrenador = entrenadores[entrenadoresDerrotados];
+                Pokemon pokemonUsuario = usuario.getPrimerPokemon();
+                Pokemon pokemonEntrenador = entrenador.getPrimerPokemon();
+                if(pokemonUsuario.getVelocidad() >= pokemonEntrenador.getVelocidad()){
+                    int ataque = elegirAtaque();
+                    danio = calcularDanio(potencia, precision, ataque, defensa, nivel);
+                    pokemonEntrenador.setVida(getVida - danio);
+                }
+            }
+            
         }
-        Ssytem.out
+        
         if (velocidad1 >=  velocidad2) {
-            int ataque = elegirAtaque();
-            int daño = calcularDaño(ataque, ataque, ataque, ataque, ataque);
-            setVida(getVida - daño);
+
         }
     }
 
     
 
-    public int calcularDaño(int potencia, int presicion, int ataque, int defensa, int nivel){
-        int daño = (((2 * nivel / 5 + 2)* potencia * presicion/ defensa)/ 50) + 2;
-        return daño;
+    public int calcularDanio(int potencia, int presicion, int ataque, int defensa, int nivel){
+        int danio = (((2 * nivel / 5 + 2)* potencia * presicion/ defensa)/ 50) + 2;
+        return danio;
     }
 
     public void entrenadores(){
