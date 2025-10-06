@@ -75,7 +75,7 @@ public class Pokemon{
     public void mostrarAtaques(){
         for (int i = 0; i <ataquesP.length; i++){
             Ataque a = ataquesP[i];
-            System.out.println((i + 1) + a.getNombreA() + "\nElemento: " + a.getElementoA().getNombreElemento() +
+            System.out.println((i + 1) + " " + a.getNombreA() + "\nElemento: " + a.getElementoA().getNombreElemento() +
              "\nPotencia: " + a.getPotenciaA() + "\n PP disponible: " + a.getPpActualA() + 
              "\nPrecision: " + a.getPrecisionA() + "\n");
         } 
