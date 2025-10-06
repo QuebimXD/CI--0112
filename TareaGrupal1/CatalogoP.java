@@ -112,8 +112,8 @@ public class CatalogoP{
             System.out.println((i+1) + ": " + listaP[i]);
         }
     }
-    public Pokemon[] getListaP(){
-        return listaP;
+    public Pokemon getListaP(int i){
+        return listaP[i];
     }
 
     
