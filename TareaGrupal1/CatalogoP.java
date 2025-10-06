@@ -1,3 +1,9 @@
+/*
+ * Esta es la clase que crea el catálogo de Pokemones.
+ * @ RodrigoLovers
+ * @version 1.0
+ */
+
 public class CatalogoP{
 
     private Pokemon[] listaP;
@@ -6,6 +12,10 @@ public class CatalogoP{
     CatalogoA ataques = new CatalogoA();
     CatalogoE elementos = new CatalogoE();
 
+    /**
+    *  Constructor de clase Ataque.
+    * 
+    */
     public CatalogoP(){
         listaP = new Pokemon[12];
 
@@ -108,15 +118,29 @@ public class CatalogoP{
                 ataques.getPlacaje(),
                 ataques.getAtaqueRapido()
             });
-
+/**
+ *  Despliegue de lls pokemones guardados en el catalogo.
+ * 
+ */
     public void desplegarCatalogo(){
         for(int i = 0 ; i < listaP.length; i++){
             System.out.println((i+1) + ": " + listaP[i].getNombreP());
         }
     }
+    /**
+ *  Retorna el pokemon que esta en una posición específica de la lista.
+ * 
+ * @param i posicion que buscamos en la lista
+ * @return pokemon de la lista
+ */
     public Pokemon getListaP(int i){
         return listaP[i];
     }
+    /**
+    * Muestra el tamñio de la lista del catalogo
+     * 
+     * @return largo lista catalogo
+     */
     public int longCatalogo(){
         return listaP.length;
     }

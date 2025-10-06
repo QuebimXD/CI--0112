@@ -1,3 +1,9 @@
+/*
+ * Esta es la clase que crea el catálogo de Ataques.
+ * @ RodrigoLovers
+ * @version 1.0
+ */
+
 public class CatalogoA{
     //Clase para establecer una lista fija de ataques, las cuales llama al catalogo de elementos
     CatalogoE catalogo = new CatalogoE();
@@ -35,53 +41,123 @@ public class CatalogoA{
     
     //Estos getters para que cada ataque sea llamado al catalogo de los pokemons
 
+    /**
+    * Retorna el ataque ascuas
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getAscuas(){
         return ascuas;
     }
+        /**
+    * Retorna el ataque lanzallamas
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getLanzallamas(){
         return lanzallamas;
     }
-
+    /**
+    * Retorna el ataque pistolaAgua
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getPistolaAgua(){
         return pistolaAgua;
     }
+        /**
+    * Retorna el ataque Hidrobomba
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getHidrobomba(){
         return hidrobomba;
     }
-
+        /**
+    * Retorna el ataque latigoCepa
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getLatigoCepa(){
         return latigoCepa;
     }
+        /**
+    * Retorna el ataque hojaAfilada
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getHojaAfilada(){
         return hojaAfilada;
     }
-
+    /**
+    * Retorna el ataque ImpactoTrueno
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getImpactrueno(){
         return impactrueno;
     }
+        /**
+    * Retorna el ataque rayo
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getRayo(){
         return rayo;
     }
-
+    /**
+    * Retorna el ataque picotazoVeneno
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getPicotazoVeneno(){
         return picotazoVeneno;
-    }public Ataque getColmilloVeneno(){
+    }
+        /**
+    * Retorna el ataque colmilloVeneno
+    *
+    * @return objeto tipo Ataque
+    */
+    public Ataque getColmilloVeneno(){
         return colmilloVeneno;
     }
-
+    /**
+    * Retorna el ataque lanzarrocas
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getLanzarrocas(){
         return lanzarrocas;
     }
+        /**
+    * Retorna el ataque rocaAfilada
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getRocaAfilada(){
         return rocaAfilada;
     }
-
+    /**
+    * Retorna el ataque placaje
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getPlacaje(){
         return placaje;
     }
+        /**
+    * Retorna el ataque ataqueRapido
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getAtaqueRapido(){
         return ataqueRapido;
     }
+        /**
+    * Retorna el ataque golpeCuerpo
+    *
+    * @return objeto tipo Ataque
+    */
     public Ataque getGolpeCuerpo(){
         return golpeCuerpo;
     }
