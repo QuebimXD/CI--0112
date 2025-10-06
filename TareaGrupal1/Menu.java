@@ -43,7 +43,7 @@ public class Menu{
                     opcion = -1;
                 }
                 else if (opcion == 4){
-                    break;
+                    System.out.println("Gracias por jugar Pokemon: Rodrigo Lovers");
                 }
             }
             catch (Exception e) {

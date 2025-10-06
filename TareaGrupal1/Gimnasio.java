@@ -10,17 +10,17 @@ public class Gimnasio {
     CatalogoP pokemones = new CatalogoP();
 
     public Gimnasio(){
-        Entrenador fuego = new Entrenador("Axel Llama", 
+        Entrenador fuego = new Entrenador("Axel Llama",
         new Pokemon[]{
             pokemones.getListaP(0),
             pokemones.getListaP(6)
         });
-        Entrenador agua = new Entrenador("Mariana Azul", 
+        Entrenador agua = new Entrenador("Mariana Azul",
         new Pokemon[]{
             pokemones.getListaP(1),
             pokemones.getListaP(10)
         });
-        Entrenador planta = new Entrenador("Raimundo Raiz", 
+        Entrenador planta = new Entrenador("Raimundo Raiz",
         new Pokemon[]{
             pokemones.getListaP(2),
             pokemones.getListaP(11)
@@ -114,6 +114,13 @@ public class Gimnasio {
     public void logicaCombate(Entrenador usuario){
         
         for(int i = 0; i < entrenadores.length; i++){
+
+            boolean NPC = verificacionNPCactivo();
+            while(NPC == false){
+                i++;
+                NPC = verificacionNPCactivo();
+            }
+
             while(!(usuario.equipoDebilitado())){
                 Entrenador entrenador = entrenadores[i];
                 System.out.println("Comienza el combate contra : " + entrenador.getNombreE() + "\n");
@@ -210,5 +217,15 @@ public class Gimnasio {
             System.out.println("Nombre: " +  e.getNombreE());
         }
     }
+
+    public boolean verificacionNPCactivo(Entrenador e){
+        int contador = 0;
+        for(int i = 0; i < e.largoListaP(); i++){
+            if(){
+                
+            }
+        }
+    }
+    
 
 }
