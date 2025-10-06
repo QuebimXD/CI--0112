@@ -1,24 +1,31 @@
 public class Entrenador {
-    private String nombre;
+    private String nombreE;
     private Pokemon[] equipoPokemon;
 
     
     public Entrenador(String nombre){
-        this.nombre = nombre;   
-        equipoPokemon = new Pokemon[2];
+        this.nombreE = nombre;   
+        this.equipoPokemon = new Pokemon[3];
     }
-
     public Entrenador(String nombre, Pokemon [] equipoPokemon){
-        this.nombre = nombre;
+        this.nombreE = nombre;
         this.equipoPokemon = equipoPokemon;
     }
 
-    public String getNombre(){
-        return  this.nombre;
+    public String getNombreE(){
+        return  nombreE;
     }
-    public Pokemon [] getEquipoPokemon(){
-        return equipoPokemon;
+    public void setNombreE(String n){
+        this.nombreE = n;
     }
+
+    public Pokemon getEquipoPokemon(int i){
+        return equipoPokemon[i];
+    }
+    public int largoListaP(){
+        return equipoPokemon.length;
+    }
+
 
     public Pokemon getPrimerPokemon(){
         if (equipoPokemon[0] == null){

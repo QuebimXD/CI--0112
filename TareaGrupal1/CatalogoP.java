@@ -7,6 +7,8 @@ public class CatalogoP{
     CatalogoE elementos = new CatalogoE();
 
     public CatalogoP(){
+        listaP = new Pokemon[12];
+
         listaP[0]= charizard;
         listaP[1]= blastoise;
         listaP[2] = venusaur;
@@ -109,12 +111,14 @@ public class CatalogoP{
 
     public void desplegarCatalogo(){
         for(int i = 0 ; i < listaP.length; i++){
-            System.out.println((i+1) + ": " + listaP[i]);
+            System.out.println((i+1) + ": " + listaP[i].getNombreP());
         }
     }
     public Pokemon getListaP(int i){
         return listaP[i];
     }
-
+    public int longCatalogo(){
+        return listaP.length;
+    }
     
 }
