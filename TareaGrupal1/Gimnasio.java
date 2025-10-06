@@ -116,20 +116,21 @@ public class Gimnasio {
         return pokemonE;
     }
    
-    public void logicaCombate(Entrenador usuario){
+    public boolean logicaCombate(Entrenador usuario){
         int entrenadoresDerrotados = 0;
-        boolean perdio = false;
+        
         for(int i = 0; i < entrenadores.length; i++){
-            while(!perdio && !usuario.equipoDebilitado()){
                 Entrenador entrenador = entrenadores[i];
-                System.out.println("Comienza el combate contra : " + entrenador.getNombreE() + "\n");
+
+                
 
                 while(!usuario.equipoDebilitado() && verificacionNPCactivo(entrenador)){
+                    System.out.println("Comienza el combate contra : " + entrenador.getNombreE() + "\n");
                     Pokemon pokeUsuario = elegirPokemonUsuario(usuario);
 
                     if(pokeUsuario==null){
                         System.out.println("Te quedaste sin pokemones gg");
-                        return;
+                        return false;
                     }
 
                     for(int j = 0; j < entrenador.largoListaP(); j++){
@@ -138,22 +139,23 @@ public class Gimnasio {
                         if(pokeNPC.getEstadoP() && !usuario.equipoDebilitado()){
                             combate(pokeUsuario, pokeNPC);
                         }                  
-                    }
-                }   
+                    }   
                 if(!verificacionNPCactivo(entrenador)){
                     System.out.println("Has vencido a " + entrenador.getNombreE());
                     entrenadoresDerrotados++;
                 }else if(usuario.equipoDebilitado()){
-                    System.out.println("Has perdido");
-                    perdio = true;
+                    System.out.println("Tus tres pokemones se han debilitado, has perdido!");
                 }
             }
             if(entrenadoresDerrotados == 4 && !(usuario.equipoDebilitado())){
                 System.out.println("Has vencido a todos los entrenadores");
+                return true;
             } 
-    }        
-    System.out.println("Saliste del for");
-}
+        }        
+        System.out.println("Saliste del for");
+        return true;
+    }
+
     public void combate(Pokemon p1, Pokemon p2){
         Scanner sc = new Scanner(System.in);
         Ataque ataqueElegido = null;
