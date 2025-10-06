@@ -51,7 +51,6 @@ public class Menu{
 
             
     }
-
     public void seleccionJugador(){
         Scanner scanner = new Scanner(System.in);
         int opcion1 = 0;
