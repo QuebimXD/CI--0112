@@ -17,6 +17,7 @@ public class CatalogoP{
         listaP[7] = jolteon;
         listaP[8] = rhydon;
         listaP[9] = arbok;
+        listaP[10] = piplup;
     }
 
             Pokemon charizard = new Pokemon("Charizard", 50, 200, elementos.getFuego(), 84, 78, 100, true, 
@@ -87,6 +88,20 @@ public class CatalogoP{
             new Ataque[]{
                 ataques.getPicotazoVeneno(),
                 ataques.getColmilloVeneno(),
+                ataques.getPlacaje(),
+                ataques.getAtaqueRapido()
+            });
+            Pokemon piplup = new Pokemon("Piplup", 60, 160, elementos.getAgua(), 100, 90, 95, true,
+            new Ataque[]{
+                ataques.getPistolaAgua(),
+                ataques.getHidrobomba(),
+                ataques.getPlacaje(),
+                ataques.getAtaqueRapido()
+            });
+            Pokemon pansage = new Pokemon("Pansage", 55, 180, elementos.getPlanta(), 90, 90, 90, true,
+            new Ataque[]{
+                ataques.getLatigoCepa(),
+                ataques.getHojaAfilada(),
                 ataques.getPlacaje(),
                 ataques.getAtaqueRapido()
             });
