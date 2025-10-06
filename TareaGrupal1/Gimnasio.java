@@ -62,7 +62,6 @@ public class Gimnasio {
     }
 
     public Ataque ataqueNPC(Pokemon p){
-         System.out.println("CARTERA");
         boolean tienePp = false;
         Ataque ataq = null;
         while(tienePp == false){
@@ -142,12 +141,18 @@ public class Gimnasio {
 
             if(p1.getVidaP() > 0){
                 ataqueElegido = elegirAtaque(p1);
-                danio = (((2 * p1.getNivelP() / 5 + 2)* ataqueElegido.getPotenciaA() * ataqueElegido.getPrecisionA()/ p2.getDefensaP())/ 50) + 2;
+                danio = calcularDanio(p1.getNivelP(), ataqueElegido.getPotenciaA(), ataqueElegido.getPrecisionA(), p2.getDefensaP());
                 p2.setVidaP(p2.getVidaP() - danio);
             }  
         }
         System.out.println("Vida de " + p1.getNombreP() + " : " + p1.getVidaP());
         System.out.println("Vida de " + p2.getNombreP() + " : " + p2.getVidaP());
+    }
+
+    public int calcularDanio(int nivel, int potencia, int precision, int defensa){
+        int danio = 0;
+        danio = (int)((((2 * nivel / 5 + 2)* potencia * precision/ defensa)/ 50) + 2);
+        return danio;
     }
             
     public void mostrarEntrenadores(){
