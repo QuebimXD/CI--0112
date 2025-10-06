@@ -8,6 +8,30 @@ public class Gimnasio {
 
     public Gimnasio(){
         NombreEU = "";
+    entrenadores = new Entrenadores[4] = {fuego, agua, planta, lider};
+    Entrenador fuego = new Entrenador("Axel Llama", 
+    new Pokemon[]{
+            pokemones.getListaP(0),
+            pokemones.getListaP(6)
+    });
+    Entrenador agua = new Entrenador("Mariana Azul", 
+    new Pokemon[]{
+            pokemones.getListaP(1),
+            pokemones.getListaP(10)
+    });
+    Entrenador planta = new Entrenador("Raimundo Raiz", 
+    new Pokemon[]{
+            pokemones.getListaP(2),
+            pokemones.getListaP(11)
+    });
+    Entrenador lider = new Entrenador("Violeta Prisma", 
+    new Pokemon[]{
+            pokemones.getListaP(4),
+            pokemones.getListaP(7),
+            pokemones.getListaP(8)
+    });
+}
+
 
     }
     public void setNombreEntrenador(String nombreU){
@@ -34,6 +58,11 @@ public class Gimnasio {
     }
     public void combate(){
         System.out.println("Comienza el combate");
+        entrenadoresDerrotados = 0;
+        while(entrenadoresDerrotados < 4){
+            System.out.println("Es turno de combatir contra:" )
+        }
+        Ssytem.out
         if (velocidad1 >=  velocidad2) {
             int ataque = elegirAtaque();
             int daño = calcularDaño(ataque, ataque, ataque, ataque, ataque);
@@ -52,25 +81,4 @@ public class Gimnasio {
 
     }
 
-    Entrenador fuego = new Entrenador("Axel Llama", 
-    new Pokemon[]{
-            pokemones.getListaP(0),
-            pokemones.getListaP(6)
-    });
-    Entrenador agua = new Entrenador("Mariana Azul", 
-    new Pokemon[]{
-            pokemones.getListaP(1),
-            pokemones.getListaP(10)
-    });
-    Entrenador planta = new Entrenador("Raimundo Raiz", 
-    new Pokemon[]{
-            pokemones.getListaP(2),
-            pokemones.getListaP(11)
-    });
-    Entrenador lider = new Entrenador("Violeta Prisma", 
-    new Pokemon[]{
-            pokemones.getListaP(4),
-            pokemones.getListaP(7),
-            pokemones.getListaP(8)
-    });
 }
