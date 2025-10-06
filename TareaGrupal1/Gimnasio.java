@@ -41,7 +41,6 @@ public class Gimnasio {
     }
 
     public Ataque elegirAtaque(Pokemon p){
-         System.out.println("CARTERA");
         Scanner sc = new Scanner(System.in);
         int opt = -1;
         Ataque ataqueElegido = null;
@@ -111,37 +110,31 @@ public class Gimnasio {
 
             }
             }
-            
-            
         }
     }
-
-
 
     public void combate(Pokemon p1, Pokemon p2){
         Ataque ataqueElegido = null;
         int danio =0;
         if(p1.getVelocidadP() >= p2.getVelocidadP()){
             ataqueElegido = elegirAtaque(p1);
-            danio = (((2 * p1.getNivelP() / 5 + 2)* ataqueElegido.getPotenciaA() * ataqueElegido.getPrecisionA()/ p2.getDefensaP())/ 50) + 2;
+            danio = calcularDanio(p1, p2, ataqueElegido);
             p2.setVidaP(p2.getVidaP() - danio);
            
-
             if(p2.getVidaP() > 0){
                 ataqueElegido = ataqueNPC(p2);
-                danio = (((2 * p2.getNivelP() / 5 + 2)* ataqueElegido.getPotenciaA() * ataqueElegido.getPrecisionA()/ p1.getDefensaP())/ 50) + 2;
+                danio = calcularDanio(p2, p1, ataqueElegido);
                 p1.setVidaP(p1.getVidaP() - danio);
             }
          
         }else {
             ataqueElegido = ataqueNPC(p2);
-            danio = (((2 * p2.getNivelP() / 5 + 2)* ataqueElegido.getPotenciaA() * ataqueElegido.getPrecisionA()/ p1.getDefensaP())/ 50) + 2;
+            danio = calcularDanio(p2, p1, ataqueElegido);
             p1.setVidaP(p1.getVidaP() - danio);
             
-
             if(p1.getVidaP() > 0){
                 ataqueElegido = elegirAtaque(p1);
-                danio = calcularDanio(p1.getNivelP(), ataqueElegido.getPotenciaA(), ataqueElegido.getPrecisionA(), p2.getDefensaP());
+                 danio = calcularDanio(p1, p2, ataqueElegido);
                 p2.setVidaP(p2.getVidaP() - danio);
             }  
         }
@@ -149,12 +142,22 @@ public class Gimnasio {
         System.out.println("Vida de " + p2.getNombreP() + " : " + p2.getVidaP());
     }
 
-    public int calcularDanio(int nivel, int potencia, int precision, int defensa){
+
+    public int calcularDanio(Pokemon p1, Pokemon p2, Ataque ataqueP1){
         int danio = 0;
-        danio = (int)((((2 * nivel / 5 + 2)* potencia * precision/ defensa)/ 50) + 2);
+
+        String fortalezaP1 = p1.getElementoP().getFortaleza();
+        String debilidadP1 = p1.getElementoP().getFortaleza();
+        if( debilidadP1.equals(p2.getElementoP().getNombreElemento())){
+             danio = (int) ( (0.90) * (((2 * p1.getNivelP() / 5 + 2)*  ataqueP1.getPotenciaA() * ataqueP1.getPrecisionA() / p2.getDefensaP())/ 50) + 2 );
+        }else if(fortalezaP1.equals(p2.getElementoP().getDebilidad())){
+             danio = (int) ( (1.10) * (((2 * p1.getNivelP() / 5 + 2)* ataqueP1.getPotenciaA() * ataqueP1.getPrecisionA() / p2.getDefensaP())/ 50) + 2 );
+        }else{
+            danio = (int) ((((2 * p1.getNivelP() / 5 + 2)* ataqueP1.getPotenciaA() * ataqueP1.getPrecisionA() / p2.getDefensaP())/ 50) + 2 );
+        }
         return danio;
     }
-            
+
     public void mostrarEntrenadores(){
         for (int i = 0; i < entrenadores.length; i++){
             Entrenador e = entrenadores[i];
