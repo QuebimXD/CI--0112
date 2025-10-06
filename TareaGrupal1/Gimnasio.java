@@ -41,6 +41,7 @@ public class Gimnasio {
     }
 
     public Ataque elegirAtaque(Pokemon p){
+         System.out.println("CARTERA");
         Scanner sc = new Scanner(System.in);
         int opt = -1;
         Ataque ataqueElegido = null;
@@ -61,6 +62,7 @@ public class Gimnasio {
     }
 
     public Ataque ataqueNPC(Pokemon p){
+         System.out.println("CARTERA");
         boolean tienePp = false;
         Ataque ataq = null;
         while(tienePp == false){
@@ -70,6 +72,7 @@ public class Gimnasio {
             if(ataq.getPpActualA() <= 0){
                 tienePp = false;
             }else{
+                ataq.setPpActualA(ataq.getPpActualA() -1);
                 tienePp = true;
             }
         }
@@ -101,10 +104,12 @@ public class Gimnasio {
         for(int i = 0; i < entrenadores.length; i++){
             while(!(usuario.equipoDebilitado())){
                 Entrenador entrenador = entrenadores[i];
+                System.out.println("Comienza el combate contra : " + entrenador.getNombreE());
                 for(int j = 0; j < entrenador.largoListaP(); j++){
                     Pokemon pokeUsuario = elegirPokemonUsuario(usuario);
                     Pokemon pokeNPC = entrenador.getEquipoPokemon(j);
-                combate(pokeUsuario, pokeNPC);
+                    combate(pokeUsuario, pokeNPC);
+
             }
             }
             
@@ -115,35 +120,36 @@ public class Gimnasio {
 
 
     public void combate(Pokemon p1, Pokemon p2){
+        Ataque ataqueElegido = null;
+        int danio =0;
+        if(p1.getVelocidadP() >= p2.getVelocidadP()){
+            ataqueElegido = elegirAtaque(p1);
+            danio = (((2 * p1.getNivelP() / 5 + 2)* ataqueElegido.getPotenciaA() * ataqueElegido.getPrecisionA()/ p2.getDefensaP())/ 50) + 2;
+            p2.setVidaP(p2.getVidaP() - danio);
+           
 
-        System.out.println("Comienza el combate");
-
-        int entrenadoresDerrotados = 0;
-
-        while(entrenadoresDerrotados < 4){
-
-            if(usuario.equipoDebilitado()){
-                System.out.println("¡Has perdido!");
-                entrenadoresDerrotados = 5;
-            }else{
-
-                System.out.println("Es turno de combatir contra:" + entrenadores[entrenadoresDerrotados].getNombreE());
-
-                Entrenador entrenador = entrenadores[entrenadoresDerrotados];
-
-                Pokemon pokemonUsuario = usuario.getPrimerPokemon();
-                Pokemon pokemonEntrenador = entrenador.getPrimerPokemon();
-                if(pokemonUsuario.getVelocidadP() >= pokemonEntrenador.getVelocidadP()){
-                    Ataque ataqueElegido = elegirAtaque(pokemonUsuario);
-                    int danio = (((2 * pokemonUsuario.getNivelP() / 5 + 2)* ataqueElegido.getPotenciaA() * ataqueElegido.getPrecisionA()/ pokemonEntrenador.getDefensaP())/ 50) + 2;
-                    pokemonEntrenador.setVidaP(pokemonEntrenador.getVidaP() - danio);
-                }
+            if(p2.getVidaP() > 0){
+                ataqueElegido = ataqueNPC(p2);
+                danio = (((2 * p2.getNivelP() / 5 + 2)* ataqueElegido.getPotenciaA() * ataqueElegido.getPrecisionA()/ p1.getDefensaP())/ 50) + 2;
+                p1.setVidaP(p1.getVidaP() - danio);
             }
+         
+        }else {
+            ataqueElegido = ataqueNPC(p2);
+            danio = (((2 * p2.getNivelP() / 5 + 2)* ataqueElegido.getPotenciaA() * ataqueElegido.getPrecisionA()/ p1.getDefensaP())/ 50) + 2;
+            p1.setVidaP(p1.getVidaP() - danio);
             
-        }
-        
-    }
 
+            if(p1.getVidaP() > 0){
+                ataqueElegido = elegirAtaque(p1);
+                danio = (((2 * p1.getNivelP() / 5 + 2)* ataqueElegido.getPotenciaA() * ataqueElegido.getPrecisionA()/ p2.getDefensaP())/ 50) + 2;
+                p2.setVidaP(p2.getVidaP() - danio);
+            }  
+        }
+        System.out.println("Vida de " + p1.getNombreP() + " : " + p1.getVidaP());
+        System.out.println("Vida de " + p2.getNombreP() + " : " + p2.getVidaP());
+    }
+            
     public void mostrarEntrenadores(){
         for (int i = 0; i < entrenadores.length; i++){
             Entrenador e = entrenadores[i];

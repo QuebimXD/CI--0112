@@ -75,7 +75,7 @@ public class Entrenador {
     public void mostrarEquipoPokemon(){
         for (int i = 0; i<equipoPokemon.length; i++){
             Pokemon j = equipoPokemon[i];
-            System.out.println((i+1) +"Nombre: " + j.getNombreP());
+            System.out.println((i+1) + j.getNombreP());
         }
     }
 }

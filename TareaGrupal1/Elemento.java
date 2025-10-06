@@ -10,4 +10,7 @@ public class Elemento {
             this.fortaleza = fortaleza;
             this.catalogo = new Elemento[6];
     }
+    public String getNombreElemento(){
+        return nombre;
+    }
 }
