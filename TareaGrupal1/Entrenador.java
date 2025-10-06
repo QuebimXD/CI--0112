@@ -12,6 +12,10 @@ public class Entrenador {
         this.nombre = nombre;
         this.equipoPokemon = equipoPokemon;
     }
+
+    public String getNombre(){
+        return  this.nombre;
+    }
     public Pokemon [] getEquipoPokemon(){
         return equipoPokemon;
     }
