@@ -41,12 +41,14 @@ public class Gimnasio {
     public String getNombreEntrenador(){
         return NombreEU;
     }
-    public int elegirAtaque(){
+    public Ataque elegirAtaque(){
         System.out.println("Elija un ataque:");
-        int ataque = 0;
+        Ataque ataque = null;
+
         return ataque;
     
     }
+
 
     public void ataqueNPC(){
         Random rand = new Random();
@@ -59,7 +61,7 @@ public class Gimnasio {
     }
     public void combate(){
         System.out.println("Comienza el combate");
-        entrenadoresDerrotados = 0;
+        int entrenadoresDerrotados = 0;
         while(entrenadoresDerrotados < 4){
             if(usuario.equipoDebilitado()){
                 System.out.println("¡Has perdido!");
@@ -71,28 +73,14 @@ public class Gimnasio {
                 Pokemon pokemonUsuario = usuario.getPrimerPokemon();
                 Pokemon pokemonEntrenador = entrenador.getPrimerPokemon();
                 if(pokemonUsuario.getVelocidad() >= pokemonEntrenador.getVelocidad()){
-                    int ataque = elegirAtaque();
-                    danio = calcularDanio(potencia, precision, ataque, defensa, nivel);
-                    pokemonEntrenador.setVida(getVida - danio);
+                    Ataque ataqueElegido = elegirAtaque();
+                    int danio = (((2 * pokemonUsuario.getNivelP() / 5 + 2)* ataqueElegido.getPotenciaA() * ataqueElegido.getPrecisionA()/ pokemonEntrenador.getDefensaP())/ 50) + 2;
+                    pokemonEntrenador.setVida(pokemonEntrenador.getVidaP() - danio);
                 }
             }
             
         }
         
-        if (velocidad1 >=  velocidad2) {
-
-        }
-    }
-
-    
-
-    public int calcularDanio(int potencia, int presicion, int ataque, int defensa, int nivel){
-        int danio = (((2 * nivel / 5 + 2)* potencia * presicion/ defensa)/ 50) + 2;
-        return danio;
-    }
-
-    public void entrenadores(){
-
     }
 
 }
