@@ -9,6 +9,7 @@ public class Menu{
         gimnasio = new Gimnasio();
         String nombre = "";
         Scanner scanner = new Scanner(System.in);
+        gimnasio.setUsuario(usuario);
 
         System.out.println("¡Bienvenido al gimmnasio pokemon!");
         System.out.println("Por favor, escriba su nombre:");
@@ -23,17 +24,17 @@ public class Menu{
             System.out.println("Empecemos el juego. Escoja una de las siguientes opciones:\n " +
                               "1-Entrar al gimnasio.\n 2-Ver a los entrenadores\n " +
                               "3-Ver mis pokemones y sus estadísticas.\n " +
-                              "4-Salir");
+                              "4-Salir"  + "\n");
             try {
                 opcion = scanner.nextInt();
                 if(opcion == 1){
-                    System.out.println("Empieza tu primera batalla.");
+                    System.out.println("Empieza tu primera batalla."  + "\n");
                     gimnasio.logicaCombate(usuario);
                     int entrenadoresDerrotados = 0;
-                    System.out.println("¡Has logrado terminar el gimmnasio!");
+                    System.out.println("¡Has logrado terminar el gimmnasio!"  + "\n");
                 }
                 else if (opcion == 2){
-                    System.out.println("Esto son los entrenadores con los cuales vas a competir: ");
+                    System.out.println("Esto son los entrenadores con los cuales vas a competir: "  + "\n");
                     gimnasio.mostrarEntrenadores();
                     opcion = -1;
                 }
@@ -46,8 +47,9 @@ public class Menu{
                 }
             }
             catch (Exception e) {
-                System.out.println("Escoja un número válido: ");
-
+                System.out.println("Escoja un número válido: "  + "\n");
+                scanner.nextLine();
+                opcion =0;
             }
         }   
     }
@@ -61,20 +63,20 @@ public class Menu{
 
         try {
             while(opcion1<=0 || opcion2 <= 0 || opcion3 == 0){
-                System.out.println("Escoja tres pokemon de la siguiente lista.");
+                System.out.println("\n" + "Escoja tres pokemon de la siguiente lista."  + "\n");
                 pokemones.desplegarCatalogo();
                 opcion1 = scanner.nextInt();
                 if (opcion1 >=0 && opcion1 <= pokemones.longCatalogo()){
                     Pokemon pokemon1 = buscarP(opcion1 - 1);
                     usuario.agregarAlEquipoPokemon(pokemon1);
                 }
-                System.out.println("Escoja su segundo pokemon");
+                System.out.println("\n" + "Escoja su segundo pokemon"  + "\n");
                 opcion2 = scanner.nextInt();
                 if (opcion2 >= 0 && opcion2 <= pokemones.longCatalogo()){
                     Pokemon pokemon2 = buscarP(opcion2 - 1);
                     usuario.agregarAlEquipoPokemon(pokemon2);
                 }
-                System.out.println("Escoja su tecer pokemon");
+                System.out.println("\n" + "Escoja su tecer pokemon"  + "\n");
                 opcion3 = scanner.nextInt();
                 if (opcion3 >= 0 && opcion3 <= pokemones.longCatalogo()){
                     Pokemon pokemon3 = buscarP(opcion3 - 1);
@@ -85,10 +87,11 @@ public class Menu{
             
         }
          catch (Exception e) {
-            System.out.println("Escoja un número válido.");
+            System.out.println("Escoja un número válido."  + "\n");
+            scanner.nextLine();
         }
 
-        System.out.println("¡Listo! Este es tu equipo pókemon: ");
+        System.out.println("¡Listo! Este es tu equipo pókemon: " + "\n");
         usuario.mostrarEquipoPokemon();
     }
 
