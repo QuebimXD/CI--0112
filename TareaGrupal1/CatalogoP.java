@@ -47,7 +47,7 @@ public class CatalogoP{
                 ataques.getPlacaje(),
                 ataques.getGolpeCuerpo()
             });
-            Pokemon venusaur = new Pokemon("Venusaur", 60, 220, elementos.getPlanta(), 82, 83, 80, true, 
+            Pokemon venusaur = new Pokemon("Venusaur", 55, 250, elementos.getPlanta(), 82, 83, 80, true, 
             new Ataque[] {
                 ataques.getLatigoCepa(),
                 ataques.getHojaAfilada(),

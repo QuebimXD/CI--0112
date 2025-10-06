@@ -121,17 +121,9 @@ public class Gimnasio {
         
         for(int i = 0; i < entrenadores.length; i++){
                 Entrenador entrenador = entrenadores[i];
-
-                
-
                 while(!usuario.equipoDebilitado() && verificacionNPCactivo(entrenador)){
                     System.out.println("Comienza el combate contra : " + entrenador.getNombreE() + "\n");
                     Pokemon pokeUsuario = elegirPokemonUsuario(usuario);
-
-                    if(pokeUsuario==null){
-                        System.out.println("Te quedaste sin pokemones gg");
-                        return false;
-                    }
 
                     for(int j = 0; j < entrenador.largoListaP(); j++){
                         Pokemon pokeNPC = entrenador.getEquipoPokemon(j);
@@ -207,11 +199,11 @@ public class Gimnasio {
 
         }
 
-        if(p1.getVidaP() <=0 ){
+        if(p1.getVidaP() <=0 && p1.getEstadoP()){
             p1.setEstadoP(false);
             System.out.println("Tu pokemon " + p1.getNombreP() + " Se ha debilitado :(" + "\n");
         }
-        if(p2.getVidaP() <=0){
+        if(p2.getVidaP() <=0 && p2.getEstadoP()){
              p2.setEstadoP(false);
              System.out.println("El pokemon del rival " + p2.getNombreP() + " se ha debilitado" + "\n");
         }
