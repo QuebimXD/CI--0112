@@ -30,8 +30,6 @@ public class Menu{
                 if(opcion == 1){
                     System.out.println("Empieza tu primera batalla."  + "\n");
                     gimnasio.logicaCombate(usuario);
-                    int entrenadoresDerrotados = 0;
-                    System.out.println("¡Has logrado terminar el gimmnasio!"  + "\n");
                 }
                 else if (opcion == 2){
                     System.out.println("Esto son los entrenadores con los cuales vas a competir: "  + "\n");
