@@ -5,7 +5,7 @@ public class Gimnasio {
     private Pokemon pokemon;
     private Entrenador[] entrenadores;
     CatalogoP pokemones = new CatalogoP();
-
+    
     public Gimnasio(){
         NombreEU = "";
     entrenadores = new Entrenadores[4] = {fuego, agua, planta, lider};
