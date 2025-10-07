@@ -54,6 +54,10 @@ public class Gimnasio {
                 System.out.println("Elija un ataque:"  + "\n");
                 p.mostrarAtaques();
                 opt = sc.nextInt();
+                while(opt > 4){
+                    System.out.println("Número incorrecto, vuelva elegir una opción");
+                    opt = sc.nextInt();
+                }
                 ataqueElegido = p.getAtaquesP(opt-1);
                 
                 if(ataqueElegido.getPpActualA() <= 0){
@@ -102,7 +106,10 @@ public class Gimnasio {
                 System.out.println("Elija un Pokemon:" + "\n");
                 e.mostrarEquipoPokemon();
                 opt = sc.nextInt();
-                System.out.println("Vas bien");
+                while(opt > 3){
+                    System.out.println("Número incorrecto, vuelva elegir una opción");
+                    opt = sc.nextInt();
+                }
                 if(opt >=1 && opt <= e.largoListaP()){
                     pokemonE = e.getEquipoPokemon(opt-1);
                     if(pokemonE.getVidaP() >0 ){
@@ -153,7 +160,6 @@ public class Gimnasio {
             } 
             curarEquipo(usuario);   
         }        
-        System.out.println("Saliste del for");
         return true;
     }
 
@@ -166,7 +172,10 @@ public class Gimnasio {
             while(p1.getVidaP() > 0 && p2.getVidaP() >0){
                 System.out.println("1-Atacar \n2- Cambiar Pokemon" + "\n");
                 opt = sc.nextInt();
-
+                while(opt > 2){
+                        System.out.println("Número incorrecto, vuelva elegir una opción");
+                        opt = sc.nextInt();
+                    }
                 if(opt ==2){
                     p1 = elegirPokemonUsuario(usuario);
                     opt = 0;

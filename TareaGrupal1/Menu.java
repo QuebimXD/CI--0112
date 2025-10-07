@@ -43,6 +43,10 @@ public class Menu{
                 else if (opcion == 4){
                     System.out.println("Gracias por jugar Pokemon: Rodrigo Lovers");
                 }
+                else if (opcion > 4){
+                    System.out.println("Escoja un número válido");
+                    opcion = 0;
+                }
             }
             catch (Exception e) {
                 System.out.println("Escoja un número válido: "  + "\n");
@@ -64,18 +68,30 @@ public class Menu{
                 System.out.println("\n" + "Escoja tres pokemon de la siguiente lista."  + "\n");
                 pokemones.desplegarCatalogo();
                 opcion1 = scanner.nextInt();
+                while(opcion1 > pokemones.longCatalogo()){
+                    System.out.println("Numero incorrecto, vuelva a escoger su primer pokemon");
+                    opcion1 = scanner.nextInt();
+                }
                 if (opcion1 >=0 && opcion1 <= pokemones.longCatalogo()){
                     Pokemon pokemon1 = buscarP(opcion1 - 1);
                     usuario.agregarAlEquipoPokemon(pokemon1);
                 }
                 System.out.println("\n" + "Escoja su segundo pokemon"  + "\n");
                 opcion2 = scanner.nextInt();
+                while(opcion2 > pokemones.longCatalogo()){
+                    System.out.println("Numero incorrecto, vuelva a escoger su segundo pokemon");
+                    opcion2 = scanner.nextInt();
+                }
                 if (opcion2 >= 0 && opcion2 <= pokemones.longCatalogo()){
                     Pokemon pokemon2 = buscarP(opcion2 - 1);
                     usuario.agregarAlEquipoPokemon(pokemon2);
                 }
                 System.out.println("\n" + "Escoja su tecer pokemon"  + "\n");
                 opcion3 = scanner.nextInt();
+                while(opcion3 > pokemones.longCatalogo()){
+                    System.out.println("Numero incorrecto, vuelva a escoger su tercer pokemon");
+                    opcion3 = scanner.nextInt();
+                }
                 if (opcion3 >= 0 && opcion3 <= pokemones.longCatalogo()){
                     Pokemon pokemon3 = buscarP(opcion3 - 1);
                     usuario.agregarAlEquipoPokemon(pokemon3);
