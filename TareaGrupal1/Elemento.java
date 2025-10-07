@@ -1,6 +1,6 @@
 /**
  * Esta es la clase modelo de Elemento.
- * @ RodrigoLovers
+ * @author RodrigoLovers
  * @version 1.0
  */
 

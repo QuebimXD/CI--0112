@@ -106,7 +106,6 @@ public class Gimnasio {
     /**
      * Setter del usuario para aplicar en el Menu
      * @param u el entrenador usuario
-     * @return la variable usuario
      */
     public void setUsuario(Entrenador u){
         this.usuario = u;
@@ -214,7 +213,7 @@ public class Gimnasio {
      * haya quedado con todo su equipo debilitado. Aqui contabiliza si gana el gimnasio, hay derrota y ademas los rivales vencidos.
      * @param usuario el usuario que se enfrenta a la lista de entrenadores
      * @return true si acaba el metodo o si el jugador vence a todos los rivales
-     * @false si el usuario pierde y se debilita todo su equipo.
+     * @return false si el usuario pierde y se debilita todo su equipo.
      */
     public boolean logicaCombate(Entrenador usuario){
         int entrenadoresDerrotados = 0;

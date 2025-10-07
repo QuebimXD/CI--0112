@@ -18,7 +18,7 @@ public class Ataque{
  * @param n nombre del ataque
  * @param e elemento del ataque
  * @param pot potencia del ataque
- * @param pM potencia actual del ataque
+ * @param pA potencia actual del ataque
  * @param pre precision del ataque
  */
     public Ataque(String n, Elemento e, int pot, int pA, int pre){

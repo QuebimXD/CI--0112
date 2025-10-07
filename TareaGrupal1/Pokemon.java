@@ -28,7 +28,6 @@ public class Pokemon{
  * @param vP velocidad del pokemon
  * @param estP estado del pokemon
  * @param ats lista de ataques
- * @param vidaMax vida maxima del pokemon
  */
 
     public Pokemon(String nP, int nivP, int vidaP, Elemento eP, int aP, int dP, int vP, boolean estP, Ataque[] ats){
@@ -179,9 +178,17 @@ public class Pokemon{
     public Ataque getAtaquesP(int i){
         return ataquesP[i];
     }
+    /** Muestra la vida maxima del pokemon
+    *
+    @return vida máxima
+    */
     public int getVidaMax(){
         return vidaMax;
     }
+    /** Muestra la longitud de la lista de ataques
+    *
+    *@return longitud
+    */
     public int longAtaques(){
         return ataquesP.length;
     }
