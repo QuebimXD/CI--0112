@@ -49,20 +49,24 @@ public class Gimnasio {
         Scanner sc = new Scanner(System.in);
         int opt = -1;
         Ataque ataqueElegido = null;
-        while(opt <= 0 || opt > 4){
-            System.out.println("Elija un ataque:"  + "\n");
-            p.mostrarAtaques();
-            opt = sc.nextInt();
-            ataqueElegido = p.getAtaquesP(opt-1);
-            
-            if(ataqueElegido.getPpActualA() <= 0){
-                System.out.println("Por favor elija otro ataque, no tiene PP disponibles"  + "\n");
-                opt = -1;
-            }else{
-                ataqueElegido.setPpActualA(ataqueElegido.getPpActualA() -1);
-            }
-        } 
-
+        try{
+            while(opt <= 0 || opt > 4){
+                System.out.println("Elija un ataque:"  + "\n");
+                p.mostrarAtaques();
+                opt = sc.nextInt();
+                ataqueElegido = p.getAtaquesP(opt-1);
+                
+                if(ataqueElegido.getPpActualA() <= 0){
+                    System.out.println("Por favor elija otro ataque, no tiene PP disponibles"  + "\n");
+                    opt = -1;
+                }else{
+                    ataqueElegido.setPpActualA(ataqueElegido.getPpActualA() -1);
+                }
+            } 
+        }catch(Exception e){
+            System.err.println("Oh no, ha fallado por: " + e);
+        }
+        
         return ataqueElegido;
     }
 
@@ -93,26 +97,30 @@ public class Gimnasio {
         Pokemon pokemonE = null;
         Scanner sc = new Scanner(System.in);
         int opt = -1;
-        
-        while(elegido == false){
-            System.out.println("Elija un Pokemon:" + "\n");
-            e.mostrarEquipoPokemon();
-            opt = sc.nextInt();
-            System.out.println("Vas bien");
-            if(opt >=1 && opt <= e.largoListaP()){
-                pokemonE = e.getEquipoPokemon(opt-1);
-                if(pokemonE.getVidaP() >0 ){
-                    System.out.println("Has elegido a " + pokemonE.getNombreP() + "\n");
-                    elegido = true;
+        try{
+            while(elegido == false){
+                System.out.println("Elija un Pokemon:" + "\n");
+                e.mostrarEquipoPokemon();
+                opt = sc.nextInt();
+                System.out.println("Vas bien");
+                if(opt >=1 && opt <= e.largoListaP()){
+                    pokemonE = e.getEquipoPokemon(opt-1);
+                    if(pokemonE.getVidaP() >0 ){
+                        System.out.println("Has elegido a " + pokemonE.getNombreP() + "\n");
+                        elegido = true;
+                    }else{
+                        System.out.println("Este pokemon no tiene vida :(" + "\n");
+                        elegido = false;
+                    }
                 }else{
-                    System.out.println("Este pokemon no tiene vida :(" + "\n");
+                    System.out.println("Escoja un numero entre las opciones" + "\n");
                     elegido = false;
                 }
-            }else{
-                System.out.println("Escoja un numero entre las opciones" + "\n");
-                elegido = false;
             }
+        }catch(Exception ex){
+            System.err.println("Oh no, ha fallado por: " + ex);
         }
+        
         return pokemonE;
     }
    
@@ -154,51 +162,55 @@ public class Gimnasio {
         Ataque ataqueElegido = null;
         int danio =0;
         int opt = 0;
+        try{
+            while(p1.getVidaP() > 0 && p2.getVidaP() >0){
+                System.out.println("1-Atacar \n2- Cambiar Pokemon" + "\n");
+                opt = sc.nextInt();
 
-        while(p1.getVidaP() > 0 && p2.getVidaP() >0){
-            System.out.println("1-Atacar \n2- Cambiar Pokemon" + "\n");
-            opt = sc.nextInt();
-
-            if(opt ==2){
-                p1 = elegirPokemonUsuario(usuario);
-                opt = 0;
-            }
-
-            if(p1.getVelocidadP() >= p2.getVelocidadP()){
-
-                if(opt != 2){
-                    ataqueElegido = elegirAtaque(p1, usuario);
-                    danio = calcularDanio(p1, p2, ataqueElegido);
-                    p2.setVidaP(p2.getVidaP() - danio);
-                    System.out.println(p1.getNombreP() + " ha usado " + ataqueElegido.getNombreA() + "\n");
+                if(opt ==2){
+                    p1 = elegirPokemonUsuario(usuario);
+                    opt = 0;
                 }
 
-                if(p2.getVidaP() > 0){
+                if(p1.getVelocidadP() >= p2.getVelocidadP()){
+
+                    if(opt != 2){
+                        ataqueElegido = elegirAtaque(p1, usuario);
+                        danio = calcularDanio(p1, p2, ataqueElegido);
+                        p2.setVidaP(p2.getVidaP() - danio);
+                        System.out.println(p1.getNombreP() + " ha usado " + ataqueElegido.getNombreA() + "\n");
+                    }
+
+                    if(p2.getVidaP() > 0){
+                        ataqueElegido = ataqueNPC(p2);
+                        danio = calcularDanio(p2, p1, ataqueElegido);
+                        p1.setVidaP(p1.getVidaP() - danio);
+                        System.out.println(p2.getNombreP() + " de rival ha usado " + ataqueElegido.getNombreA() + "\n");
+                    }
+
+                }else{
+
                     ataqueElegido = ataqueNPC(p2);
                     danio = calcularDanio(p2, p1, ataqueElegido);
                     p1.setVidaP(p1.getVidaP() - danio);
                     System.out.println(p2.getNombreP() + " de rival ha usado " + ataqueElegido.getNombreA() + "\n");
+
+                    if(p1.getVidaP() > 0 && opt !=2){
+                        ataqueElegido = elegirAtaque(p1, usuario);
+                        System.out.println(p1.getNombreP() + " ha usado " + ataqueElegido.getNombreA() + "\n");
+                        danio = calcularDanio(p1, p2, ataqueElegido);
+                        p2.setVidaP(p2.getVidaP() - danio);
+                    }  
                 }
+                //Despues de cada ataque se actualizan las vidass
+                System.out.println("| Vida de " + p1.getNombreP() + " : " + p1.getVidaP());
+                System.out.println("| Vida de " + p2.getNombreP() + " : " + p2.getVidaP() + "\n");
 
-            }else{
-
-                ataqueElegido = ataqueNPC(p2);
-                danio = calcularDanio(p2, p1, ataqueElegido);
-                p1.setVidaP(p1.getVidaP() - danio);
-                System.out.println(p2.getNombreP() + " de rival ha usado " + ataqueElegido.getNombreA() + "\n");
-
-                if(p1.getVidaP() > 0 && opt !=2){
-                    ataqueElegido = elegirAtaque(p1, usuario);
-                    System.out.println(p1.getNombreP() + " ha usado " + ataqueElegido.getNombreA() + "\n");
-                    danio = calcularDanio(p1, p2, ataqueElegido);
-                    p2.setVidaP(p2.getVidaP() - danio);
-                }  
             }
-            //Despues de cada ataque se actualizan las vidass
-            System.out.println("| Vida de " + p1.getNombreP() + " : " + p1.getVidaP());
-            System.out.println("| Vida de " + p2.getNombreP() + " : " + p2.getVidaP() + "\n");
-
+        }catch(Exception exc){
+            System.err.println("Oh no, ha fallado por: " + exc);
         }
+        
 
         if(p1.getVidaP() <=0 && p1.getEstadoP()){
             p1.setEstadoP(false);
