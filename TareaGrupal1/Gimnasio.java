@@ -9,7 +9,28 @@ public class Gimnasio {
     private Entrenador[] entrenadores;
     CatalogoP pokemones = new CatalogoP();
 
+    //Variables para el resumen
+    private int rivalesDerrotados;
+    private int pokemonesDerrotadosR;
+    private int pokemonesDerrotadosU;
+    private long tiempoInicio;
+    private int tiempoFinal;
+    private int gymVencidos;
+    private int derrotas;
+
+
+
+
     public Gimnasio(){
+
+        this.rivalesDerrotados = 0;
+        this.pokemonesDerrotadosR =0;
+        this.pokemonesDerrotadosU =0;
+        this.tiempoInicio =0;
+        this.tiempoFinal =0;
+        this.gymVencidos =0;
+        this.derrotas =0;
+
         Entrenador fuego = new Entrenador("Axel Llama",
         new Pokemon[]{
             pokemones.getListaP(0),
@@ -36,6 +57,28 @@ public class Gimnasio {
         entrenadores[1] = agua;
         entrenadores[2] = planta;
         entrenadores[3] = lider; 
+    }
+
+    public int getRivalesDerrotadosR(){
+        return rivalesDerrotados;
+    }
+    public int getPokemonesDerrotadosR(){
+        return pokemonesDerrotadosR;
+    }
+    public int getPokemonesDerroratosU(){
+        return pokemonesDerrotadosU;
+    }
+    public long getTiempoInicio(){
+        return tiempoInicio;
+    }
+    public long getTiempoFinal(){
+        return tiempoFinal;
+    }
+    public int getGymVencidos(){
+        return gymVencidos;
+    }
+    public int getDerrotas(){
+        return derrotas;
     }
 
     public Entrenador getEntrenador(int i){
@@ -92,11 +135,6 @@ public class Gimnasio {
     }
 
     public Pokemon elegirPokemonUsuario(Entrenador e){
-        if(e.equipoDebilitado()){
-            System.out.println("Te has quedado sin pokemones");
-            
-            return null;
-        }
         boolean elegido = false;
         Pokemon pokemonE = null;
         Scanner sc = new Scanner(System.in);
@@ -152,10 +190,12 @@ public class Gimnasio {
                     entrenadoresDerrotados++;
                 }else if(usuario.equipoDebilitado()){
                     System.out.println("Tus tres pokemones se han debilitado, has perdido!");
+                    derrotas++;
                 }
             }
             if(entrenadoresDerrotados == 4 && !(usuario.equipoDebilitado())){
                 System.out.println("Has vencido a todos los entrenadores");
+                gymVencidos++;
                 return true;
             } 
             curarEquipo(usuario);   
@@ -224,10 +264,12 @@ public class Gimnasio {
         if(p1.getVidaP() <=0 && p1.getEstadoP()){
             p1.setEstadoP(false);
             System.out.println("Tu pokemon " + p1.getNombreP() + " Se ha debilitado :(" + "\n");
+            pokemonesDerrotadosU++;
         }
         if(p2.getVidaP() <=0 && p2.getEstadoP()){
              p2.setEstadoP(false);
              System.out.println("El pokemon del rival " + p2.getNombreP() + " se ha debilitado" + "\n");
+             pokemonesDerrotadosR++;
         }
     }
 
