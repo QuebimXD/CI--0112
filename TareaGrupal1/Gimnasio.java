@@ -68,12 +68,6 @@ public class Gimnasio {
     public int getPokemonesDerroratosU(){
         return pokemonesDerrotadosU;
     }
-    public long getTiempoInicio(){
-        return tiempoInicio;
-    }
-    public long getTiempoFinal(){
-        return tiempoFinal;
-    }
     public int getGymVencidos(){
         return gymVencidos;
     }
@@ -188,6 +182,7 @@ public class Gimnasio {
                 if(!verificacionNPCactivo(entrenador)){
                     System.out.println("Has vencido a " + entrenador.getNombreE());
                     entrenadoresDerrotados++;
+                    rivalesDerrotados++;
                 }else if(usuario.equipoDebilitado()){
                     System.out.println("Tus tres pokemones se han debilitado, has perdido!");
                     derrotas++;

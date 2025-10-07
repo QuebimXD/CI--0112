@@ -5,6 +5,8 @@ public class Menu{
     private CatalogoP pokemones = new CatalogoP();
 
     public Menu(){
+        long inicio = System.nanoTime();
+        double duracionSegundos = 0;
         usuario = new Entrenador("");
         gimnasio = new Gimnasio();
         String nombre = "";
@@ -20,7 +22,6 @@ public class Menu{
 
         int opcion = 0;
         while (opcion <= 0){
-
             System.out.println("Empecemos el juego. Escoja una de las siguientes opciones:\n " +
                               "1-Entrar al gimnasio.\n 2-Ver a los entrenadores\n " +
                               "3-Ver mis pokemones y sus estadísticas.\n " +
@@ -30,6 +31,9 @@ public class Menu{
                 if(opcion == 1){
                     System.out.println("Empieza tu primera batalla."  + "\n");
                     gimnasio.logicaCombate(usuario);
+                    opcion = -1;
+
+                    
                 }
                 else if (opcion == 2){
                     System.out.println("Esto son los entrenadores con los cuales vas a competir: "  + "\n");
@@ -41,9 +45,20 @@ public class Menu{
                     opcion = -1;
                 }
                 else if (opcion == 4){
+                    
                     System.out.println("Gracias por jugar Pokemon: Rodrigo Lovers");
+                    long fin = System.nanoTime();
+                    long duracionNano = fin - inicio;
+                    duracionSegundos = (int)(duracionNano / 1_000_000_000.0);
+                    System.out.println("Resumen de su juego \nSus rivales derrotados fueron: " + gimnasio.getRivalesDerrotadosR()  
+                                        + "\nLos pokemones que derroto fueron: " + gimnasio.getPokemonesDerrotadosR() 
+                                        + "\nSus pokemones derrotados fueron: " + gimnasio.getPokemonesDerroratosU()
+                                        + "\nLos gimnasios que vencio fueron: " + gimnasio.getGymVencidos()
+                                        + "\nLas derrotas que tuvo fueron: " + gimnasio.getDerrotas()
+                                        + "\nEl tiempo jugado en segundos fue: " + duracionSegundos);
                 }
                 else if (opcion > 4){
+                    
                     System.out.println("Escoja un número válido");
                     opcion = 0;
                 }
