@@ -1,10 +1,12 @@
 import java.util.Random;
 import java.util.Scanner;
 
+
+/*
+ * Clase de tipo Controlador de Gimnasio
+ */
 public class Gimnasio {
-    private boolean cambiar;
     private Entrenador usuario;
-    private String Ataque;
     private Pokemon pokemon;
     private Entrenador[] entrenadores;
     CatalogoP pokemones = new CatalogoP();
@@ -13,21 +15,20 @@ public class Gimnasio {
     private int rivalesDerrotados;
     private int pokemonesDerrotadosR;
     private int pokemonesDerrotadosU;
-    private long tiempoInicio;
-    private int tiempoFinal;
     private int gymVencidos;
     private int derrotas;
 
 
 
-
+    /**
+     * Constructor de Gimnasio
+     * Se inicializan los contadores como 0 y se inicializa y guardan los entrenadores y la lista de entrenadores respectivamente.
+     */
     public Gimnasio(){
 
         this.rivalesDerrotados = 0;
         this.pokemonesDerrotadosR =0;
         this.pokemonesDerrotadosU =0;
-        this.tiempoInicio =0;
-        this.tiempoFinal =0;
         this.gymVencidos =0;
         this.derrotas =0;
 
@@ -59,29 +60,64 @@ public class Gimnasio {
         entrenadores[3] = lider; 
     }
 
+    /**
+     * Getter de contador de rivales derrotados
+     * @return la variable de rivales derrotados
+     */
     public int getRivalesDerrotadosR(){
         return rivalesDerrotados;
     }
+    /**
+     * Getter de contador de pokemonnes rivales derrotados
+     * @return la variable de pokemones rivales derrotados
+     */
     public int getPokemonesDerrotadosR(){
         return pokemonesDerrotadosR;
     }
+    /**
+     * Getter de contador de pokemones del usuario derrotados
+     * @return la variable de pokemones del usuario derrotados
+     */
     public int getPokemonesDerroratosU(){
         return pokemonesDerrotadosU;
     }
+    /**
+     * Getter de contador de veces que se pasa el gimnasio
+     * @return la variable de gymVencidos
+     */
     public int getGymVencidos(){
         return gymVencidos;
     }
+    /**
+     * Getter de contador de veces que se pierde en el gimnasio
+     * @return la variable de contador de derrotas
+     */
     public int getDerrotas(){
         return derrotas;
     }
-
+    /**
+     * Getter que retorna un entrenador de la lista
+     * @param i el indice del entrenador a buscar
+     * @return el entrenador i de la lista
+     */
     public Entrenador getEntrenador(int i){
         return entrenadores[i];
     }
+    /**
+     * Setter del usuario para aplicar en el Menu
+     * @param u el entrenador usuario
+     * @return la variable usuario
+     */
     public void setUsuario(Entrenador u){
         this.usuario = u;
     }
 
+    /**
+     * Metodo para que el  usuario elija el ataque del pokemon. Abre un mini menu para que el usuario escoja un ataque. Verifica si los pp son positivos, sino manda al jugador a elegir otro.
+     * @param p el pokemon del que se va a elegir el ataque
+     * @param u el duenio del pokemon parametro
+     * @return el ataque que eligio el jugador
+     */
     public Ataque elegirAtaque(Pokemon p, Entrenador u){
         Scanner sc = new Scanner(System.in);
         int opt = -1;
@@ -92,7 +128,7 @@ public class Gimnasio {
                 p.mostrarAtaques();
                 opt = sc.nextInt();
                 while(opt > 4){
-                    System.out.println("Número incorrecto, vuelva elegir una opción");
+                    System.out.println("Número incorrecto, vuelva elegir una opción \n");
                     opt = sc.nextInt();
                 }
                 ataqueElegido = p.getAtaquesP(opt-1);
@@ -111,6 +147,11 @@ public class Gimnasio {
         return ataqueElegido;
     }
 
+    /**
+     * Metodo para que el NPC escoja el ataque de su pokemon de manera automatica. Randomiza un numero entre 0 y 3 para escoger el ataque del indice de la lista de ataques del pokemon del NPC
+     * @param p el pokemon del que se extrae el ataque
+     * @return el ataque que se escogio de manera aleatoria
+     */
     public Ataque ataqueNPC(Pokemon p){
         boolean tienePp = false;
         Ataque ataq = null;
@@ -128,6 +169,11 @@ public class Gimnasio {
         return ataq;
     }
 
+    /**
+     * Metodo para que el usuario cambie de pokemon mientras esta en combate. Abre un mini menu que se encarga de hacer al usuario elegir el pokemon.
+     * @param e el entrenador usuario.
+     * @return el pokemon que va a ser cambiado durante el combate.
+     */
     public Pokemon elegirPokemonUsuario(Entrenador e){
         boolean elegido = false;
         Pokemon pokemonE = null;
@@ -139,7 +185,7 @@ public class Gimnasio {
                 e.mostrarEquipoPokemon();
                 opt = sc.nextInt();
                 while(opt > 3){
-                    System.out.println("Número incorrecto, vuelva elegir una opción");
+                    System.out.println("Número incorrecto, vuelva elegir una opción \n");
                     opt = sc.nextInt();
                 }
                 if(opt >=1 && opt <= e.largoListaP()){
@@ -162,7 +208,14 @@ public class Gimnasio {
         
         return pokemonE;
     }
-   
+    
+    /**
+     * Metodo para recorrer la logica de los combates. El for recorre la lista de entrenadores, que luego otro for recorre la lista de pokemones del rival. Verifica que tanto el NPC como el usuario no 
+     * haya quedado con todo su equipo debilitado. Aqui contabiliza si gana el gimnasio, hay derrota y ademas los rivales vencidos.
+     * @param usuario el usuario que se enfrenta a la lista de entrenadores
+     * @return true si acaba el metodo o si el jugador vence a todos los rivales
+     * @false si el usuario pierde y se debilita todo su equipo.
+     */
     public boolean logicaCombate(Entrenador usuario){
         int entrenadoresDerrotados = 0;
 
@@ -180,16 +233,17 @@ public class Gimnasio {
                     }                  
                 }   
                 if(!verificacionNPCactivo(entrenador)){
-                    System.out.println("Has vencido a " + entrenador.getNombreE());
-                    entrenadoresDerrotados++;
+                    System.out.println("Has vencido a " + entrenador.getNombreE() + "\n");
                     rivalesDerrotados++;
+                    entrenadoresDerrotados++;
+                   
                 }else if(usuario.equipoDebilitado()){
-                    System.out.println("Tus tres pokemones se han debilitado, has perdido!");
+                    System.out.println("Tus tres pokemones se han debilitado, has perdido! \n");
                     derrotas++;
                 }
             }
             if(entrenadoresDerrotados == 4 && !(usuario.equipoDebilitado())){
-                System.out.println("Has vencido a todos los entrenadores");
+                System.out.println("FELICIDADESS!!! Has vencido a todos los entrenadores! \n");
                 gymVencidos++;
                 return true;
             } 
@@ -198,6 +252,13 @@ public class Gimnasio {
         return true;
     }
 
+    /**
+     * Metodo donde el pokemon del usuario y el del NPC se enfrentan. Veirica cual velocidad del pokemon es mayor y hace el calculo del danio, le resta la vida al pokemon afectado y luego imprime el ataque que realizo cada pokemon e imprime 
+     * las vidas actualizadas. Al final si algun pokemon pierde toda su vida entonces se imprime el pokemon que ha sido derrotado
+     * @param p1 el pokemon del usuario
+     * @param p2 el pokemon del NPC
+     * No retorna nada, pues es un metodo void
+     */
     public void combate(Pokemon p1, Pokemon p2){
         Scanner sc = new Scanner(System.in);
         Ataque ataqueElegido = null;
@@ -222,14 +283,12 @@ public class Gimnasio {
                         ataqueElegido = elegirAtaque(p1, usuario);
                         danio = calcularDanio(p1, p2, ataqueElegido);
                         p2.setVidaP(p2.getVidaP() - danio);
-                        System.out.println(p1.getNombreP() + " ha usado " + ataqueElegido.getNombreA() + "\n");
                     }
 
                     if(p2.getVidaP() > 0){
                         ataqueElegido = ataqueNPC(p2);
                         danio = calcularDanio(p2, p1, ataqueElegido);
                         p1.setVidaP(p1.getVidaP() - danio);
-                        System.out.println(p2.getNombreP() + " de rival ha usado " + ataqueElegido.getNombreA() + "\n");
                     }
 
                 }else{
@@ -237,16 +296,18 @@ public class Gimnasio {
                     ataqueElegido = ataqueNPC(p2);
                     danio = calcularDanio(p2, p1, ataqueElegido);
                     p1.setVidaP(p1.getVidaP() - danio);
-                    System.out.println(p2.getNombreP() + " de rival ha usado " + ataqueElegido.getNombreA() + "\n");
 
                     if(p1.getVidaP() > 0 && opt !=2){
                         ataqueElegido = elegirAtaque(p1, usuario);
-                        System.out.println(p1.getNombreP() + " ha usado " + ataqueElegido.getNombreA() + "\n");
                         danio = calcularDanio(p1, p2, ataqueElegido);
                         p2.setVidaP(p2.getVidaP() - danio);
                     }  
                 }
-                //Despues de cada ataque se actualizan las vidass
+                //Despues de cada ataque se actualizan las vidas y se dice quien ha atacado
+                System.out.println(p1.getNombreP() + " ha usado " + ataqueElegido.getNombreA() + "\n");
+                System.out.println(p2.getNombreP() + " de rival ha usado " + ataqueElegido.getNombreA() + "\n");
+
+
                 System.out.println("| Vida de " + p1.getNombreP() + " : " + p1.getVidaP());
                 System.out.println("| Vida de " + p2.getNombreP() + " : " + p2.getVidaP() + "\n");
 
@@ -268,7 +329,13 @@ public class Gimnasio {
         }
     }
 
-
+    /**
+     * Metodo para calcular el danio del pokemon1 al pokemon 2. Verifica si la debilidad y fortaleza del pokemon a atacar coincide con el tipo del pokemon y la debilidad respectivamente para apliciar bufo o debufo
+     * respectivamente. La formula sin cambios es: (((2 * nivel /2 +5) * potencia * preisicion / defensa de pokemon atacado) / 50 ) + 2 )
+     * @param p1 el pokemon que hara danio que extrae fortaleza, debilidad y nivel
+     * @param p2 el pokemon que sufrira el ataque del que se extrae su defensa
+     * @param ataqueP1 el ataque del pokemon 1 de donde se extraen las stats de potencia y presicion
+     */
     public int calcularDanio(Pokemon p1, Pokemon p2, Ataque ataqueP1){
         int danio = 0;
 
@@ -284,13 +351,22 @@ public class Gimnasio {
         return danio;
     }
 
+    /**
+     * Metodo iterativo que imprime el nombre de la lista de entrenadores
+     * no retorna nada, es fijo
+     */
     public void mostrarEntrenadores(){
         for (int i = 0; i < entrenadores.length; i++){
             Entrenador e = entrenadores[i];
             System.out.println("Nombre: " +  e.getNombreE());
         }
     }
-
+    /**
+     * Metodo para verificar que el npc sigue teniendo a alguno de sus pokemones vivos. Util para el while de la logica de combate
+     * @param e el entrenador NPC
+     * @return true si aun le queda al menos un pokemon con vida
+     * @return false si ya no le quedan pokemones con vida
+     */
     public boolean verificacionNPCactivo(Entrenador e){
         int contador = 0;
         for(int i = 0; i < e.largoListaP(); i++){
@@ -303,7 +379,12 @@ public class Gimnasio {
         }
         return true;
     }
-    
+
+    /**
+     *Metodo para regenerar de manera iterativa la vida y los PP de cada pokemon del entrenador despues de haber derrotado a algun rival de la lista de entrenadores.
+     @param e el entrenador usuario
+     imprime un aviso de que ha curado los pokemones despues de vencer a cada rival para notificarle al usuario. 
+     */
     public void curarEquipo(Entrenador e){
         for(int i = 0; i < e.largoListaP(); i++){
             Pokemon curando = usuario.getEquipoPokemon(i);
