@@ -1,11 +1,24 @@
 import java.util.Scanner;
+
+/*
+ * Clase de tipo Controlador principal
+ * @ RodrigoLovers
+ * @version 1.0
+ */
+
 public class Menu{
     private Entrenador usuario;
     private Gimnasio gimnasio;
     private CatalogoP pokemones = new CatalogoP();
 
+    /**
+     * Constructor de Menu
+     * Contiene la logica de inicio que siguie el usuario al entrar al codigo
+     * Brinda el menu principal del codigo donde accede a todas las demas clases
+     * Realiza el calculo del tiempo en segundos que el usuario para mientras utiliza el codigo completo
+     */
     public Menu(){
-        long inicio = System.nanoTime();
+        long inicio = System.nanoTime(); //Guarda el tiempo de inicio del codigo
         double duracionSegundos = 0;
         usuario = new Entrenador("");
         gimnasio = new Gimnasio();
@@ -20,6 +33,7 @@ public class Menu{
         System.out.println("Escoja a sus tres pokemon iniciales:");
         seleccionJugador();
 
+        //Menu principal del codigo
         int opcion = 0;
         while (opcion <= 0){
             System.out.println("Empecemos el juego. Escoja una de las siguientes opciones:\n " +
@@ -28,7 +42,7 @@ public class Menu{
                               "4-Salir"  + "\n");
             try {
                 opcion = scanner.nextInt();
-                if(opcion == 1){
+                if(opcion == 1){ 
                     System.out.println("Empieza tu primera batalla."  + "\n");
                     gimnasio.logicaCombate(usuario);
                     opcion = -1;
@@ -47,9 +61,9 @@ public class Menu{
                 else if (opcion == 4){
                     
                     System.out.println("Gracias por jugar Pokemon: Rodrigo Lovers");
-                    long fin = System.nanoTime();
+                    long fin = System.nanoTime(); //Guarda el tiempo de finalización del codigo 
                     long duracionNano = fin - inicio;
-                    duracionSegundos = (int)(duracionNano / 1_000_000_000.0);
+                    duracionSegundos = (int)(duracionNano / 1_000_000_000.0); //Convierte el tiempo a segundos 
                     System.out.println("Resumen de su juego \nSus rivales derrotados fueron: " + gimnasio.getRivalesDerrotadosR()  
                                         + "\nLos pokemones que derroto fueron: " + gimnasio.getPokemonesDerrotadosR() 
                                         + "\nSus pokemones derrotados fueron: " + gimnasio.getPokemonesDerroratosU()
@@ -71,6 +85,10 @@ public class Menu{
         }   
     }
 
+    /**
+     * Metodo para que el usuario seleccione su equipó de pokemones 
+     * No retorna nada, pues es un metodo void y es un metodo fijo 
+     */
     public void seleccionJugador(){
         Scanner scanner = new Scanner(System.in);
         int opcion1 = 0;
@@ -83,7 +101,7 @@ public class Menu{
                 System.out.println("\n" + "Escoja tres pokemon de la siguiente lista."  + "\n");
                 pokemones.desplegarCatalogo();
                 opcion1 = scanner.nextInt();
-                while(opcion1 > pokemones.longCatalogo()){
+                while(opcion1 > pokemones.longCatalogo()){ //Evita que el usuario ingrese datos fuera de los limites
                     System.out.println("Numero incorrecto, vuelva a escoger su primer pokemon");
                     opcion1 = scanner.nextInt();
                 }
@@ -91,9 +109,10 @@ public class Menu{
                     Pokemon pokemon1 = buscarP(opcion1 - 1);
                     usuario.agregarAlEquipoPokemon(pokemon1);
                 }
+                
                 System.out.println("\n" + "Escoja su segundo pokemon"  + "\n");
                 opcion2 = scanner.nextInt();
-                while(opcion2 > pokemones.longCatalogo()){
+                while(opcion2 > pokemones.longCatalogo()){ //Evita que el usuario ingrese datos fuera de los limites
                     System.out.println("Numero incorrecto, vuelva a escoger su segundo pokemon");
                     opcion2 = scanner.nextInt();
                 }
@@ -101,9 +120,10 @@ public class Menu{
                     Pokemon pokemon2 = buscarP(opcion2 - 1);
                     usuario.agregarAlEquipoPokemon(pokemon2);
                 }
+
                 System.out.println("\n" + "Escoja su tecer pokemon"  + "\n");
                 opcion3 = scanner.nextInt();
-                while(opcion3 > pokemones.longCatalogo()){
+                while(opcion3 > pokemones.longCatalogo()){ //Evita que el usuario ingrese datos fuera de los limites
                     System.out.println("Numero incorrecto, vuelva a escoger su tercer pokemon");
                     opcion3 = scanner.nextInt();
                 }
@@ -124,6 +144,11 @@ public class Menu{
         usuario.mostrarEquipoPokemon();
     }
 
+    /**
+     * Metodo que busca y retorna el pokemon para poder agregarlo al equipo
+     * @param i Número seleccionado por el usuario donde se encuentre el pokemon deseado 
+     * @return Objeto pokemon 
+     */
     public Pokemon buscarP(int i){
         Pokemon p = null;
         for(int j = 0; j < pokemones.longCatalogo(); j++){
