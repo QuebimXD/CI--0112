@@ -21,12 +21,13 @@ public class Ataque{
  * @param pM potencia actual del ataque
  * @param pre precision del ataque
  */
-    public Ataque(String n, Elemento e, int pot, int pM, int pre){
+    public Ataque(String n, Elemento e, int pot, int pA, int pre){
         this.nombreA = n;
         this.elementoA = e;
         this.potenciaA = pot;
-        this.ppActualA = pM; //El pp actual es el maximo al inicio de cada Pokemon >:D
+        this.ppActualA = pA; //El pp actual es el maximo al inicio de cada Pokemon >:D
         this.precisionA = pre;
+        this.ppMaxA = pA;
     }
 
     /**

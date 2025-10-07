@@ -14,6 +14,7 @@ public class Pokemon{
     private int velocidadP;
     private boolean estadoP;
     private Ataque[] ataquesP;
+    private int vidaMax;
 
 /**
  *  Constructor de clase Pokemon.
@@ -27,9 +28,11 @@ public class Pokemon{
  * @param vP velocidad del pokemon
  * @param estP estado del pokemon
  * @param ats lista de ataques
+ * @param vidaMax vida maxima del pokemon
  */
 
     public Pokemon(String nP, int nivP, int vidaP, Elemento eP, int aP, int dP, int vP, boolean estP, Ataque[] ats){
+        this.vidaMax =vidaP;
         this.nombreP = nP;
         this.nivelP = nivP;
         this.vidaP = vidaP;
@@ -175,6 +178,12 @@ public class Pokemon{
     */
     public Ataque getAtaquesP(int i){
         return ataquesP[i];
+    }
+    public int getVidaMax(){
+        return vidaMax;
+    }
+    public int longAtaques(){
+        return ataquesP.length;
     }
     /** Muestra los ataques guardados dentro de la lista interna de ataques
     *

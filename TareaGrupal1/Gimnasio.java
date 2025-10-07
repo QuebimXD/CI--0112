@@ -118,20 +118,20 @@ public class Gimnasio {
    
     public boolean logicaCombate(Entrenador usuario){
         int entrenadoresDerrotados = 0;
-        
-        for(int i = 0; i < entrenadores.length; i++){
-                Entrenador entrenador = entrenadores[i];
-                while(!usuario.equipoDebilitado() && verificacionNPCactivo(entrenador)){
-                    System.out.println("Comienza el combate contra : " + entrenador.getNombreE() + "\n");
-                    Pokemon pokeUsuario = elegirPokemonUsuario(usuario);
 
-                    for(int j = 0; j < entrenador.largoListaP(); j++){
-                        Pokemon pokeNPC = entrenador.getEquipoPokemon(j);
+        for(int i = 0; i < entrenadores.length; i++){
+            Entrenador entrenador = entrenadores[i];
+            while(!usuario.equipoDebilitado() && verificacionNPCactivo(entrenador)){
+                System.out.println("Comienza el combate contra : " + entrenador.getNombreE() + "\n");
+                Pokemon pokeUsuario = elegirPokemonUsuario(usuario);
+
+                for(int j = 0; j < entrenador.largoListaP(); j++){
+                    Pokemon pokeNPC = entrenador.getEquipoPokemon(j);
                         
-                        if(pokeNPC.getEstadoP() && !usuario.equipoDebilitado()){
-                            combate(pokeUsuario, pokeNPC);
-                        }                  
-                    }   
+                    if(pokeNPC.getEstadoP() && !usuario.equipoDebilitado()){
+                        combate(pokeUsuario, pokeNPC);
+                    }                  
+                }   
                 if(!verificacionNPCactivo(entrenador)){
                     System.out.println("Has vencido a " + entrenador.getNombreE());
                     entrenadoresDerrotados++;
@@ -143,6 +143,7 @@ public class Gimnasio {
                 System.out.println("Has vencido a todos los entrenadores");
                 return true;
             } 
+            curarEquipo(usuario);   
         }        
         System.out.println("Saliste del for");
         return true;
@@ -245,5 +246,17 @@ public class Gimnasio {
         return true;
     }
     
+    public void curarEquipo(Entrenador e){
+        for(int i = 0; i < e.largoListaP(); i++){
+            Pokemon curando = usuario.getEquipoPokemon(i);
+            curando.setVidaP(curando.getVidaMax());
+            for(int j = 0; j < curando.longAtaques(); j++){
+                curando.getAtaquesP(j).setPpActualA(curando.getAtaquesP(j).getPpMaxA());
+            }
+        }
+        
+        System.out.println("Has curado a tus pokemones \n");
+    }
+
 
 }
