@@ -3,32 +3,38 @@ public class Pieza{
     private String nombre;
     private Bloque[][] pieza;  //inicialmente
     private Bloque[] bloques; // los 4 bloques con su color aleatorio
-    private int posicionBloque;
+    //private int posicionBloque;
     private String [] colores = {"rojo", "amarillo", "verde", "morado", "azul", "naranja"};
 
     public Pieza(){
-        posicionBloque = 0;
+        //posicionBloque = 0;
         bloques = new Bloque[4];
         pieza = new Bloque[4][2]; //inicialmente, luego se cambia dependiendo de la forma
         
-        int indice2 = (int)(Math.random() * 4);
+        
 
         for(int i = 0; i < bloques.length; i++){
             int indice = (int)(Math.random() * 4);
             String color = colores[indice];
             bloques[i] = new Bloque(color);
         }
+        int indice2 = (int)(Math.random() * 4);
+        elegirForma(indice2);
+        imprimirPieza();
+        System.out.println(nombre);
 
     }
     public void imprimirPieza(){
-        for(int i = 0; i < pieza.length; i++){
-            for(int j = 0; j < pieza[0].length; j++){
-                if(pieza[i][j] != null){
-                    Bloque temp = pieza[i][j];
-                    System.out.println(temp.getColor());
+        for(Bloque [] filas: pieza){
+            for(Bloque bloque: filas ){
+                if(bloque != null){
+                    System.out.print(bloque.getColor() + " ");
+                } else{
+                    System.out.print(" ");
                 }
-                System.out.println();
+                
             }
+            System.out.println();
         }
        
     }
@@ -56,11 +62,30 @@ public class Pieza{
                 nombre = "T";
                 break;
             case 3:
-                Bloque [][] forma4 = {{bloque1, bloque2}, {null, bloque3, bloque4}};
+                Bloque [][] forma4 = {{bloque1, bloque2}, {bloque3, bloque4}};
                 pieza = forma4;
-                nombre = "Z";
+                nombre = "Cuadrado";
             default:
                 break;
         }
+    }
+
+    public void rotarPieza(String movimiento){
+        int fil = pieza.length;
+        int col = pieza[0].length;
+        Bloque [][] nuevo = new Bloque[col][fil];
+
+        switch(movimiento){
+            case "D":
+                for(int i = pieza.length; i < 0; i++){
+                    nuevo[0][i] = pieza[i][0];
+                }
+                break;
+            case "A":
+                break;
+            default:
+                break;
+        }
+        
     }
 }
