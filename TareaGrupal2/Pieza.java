@@ -71,21 +71,15 @@ public class Pieza{
     }
 
     public void rotarPieza(String movimiento){
+        //rotación de acuerdo a las manecillas del reloj, es decir siempre hacia la derecha dependiendo de su rotación actual
         int fil = pieza.length;
         int col = pieza[0].length;
         Bloque [][] nuevo = new Bloque[col][fil];
 
-        switch(movimiento){
-            case "D":
-                for(int i = pieza.length; i < 0; i++){
-                    nuevo[0][i] = pieza[i][0];
-                }
-                break;
-            case "A":
-                break;
-            default:
-                break;
+        for(Bloque[] filas: pieza){
+            for(int i = pieza.length; i < 0; i++){
+                nuevo[0][i] = pieza[i][0];
+            }
         }
-        
     }
 }
