@@ -6,6 +6,10 @@ public class Pieza{
     //private int posicionBloque;
     private String [] colores = {"rojo", "amarillo", "verde", "morado", "azul", "naranja"};
 
+    public String[] getColores(){
+        return colores;
+    }
+
     public Pieza(){
         //posicionBloque = 0;
         bloques = new Bloque[4];
