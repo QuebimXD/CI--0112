@@ -1,6 +1,11 @@
 public class Menu{
+
     Tablero tablero = new Tablero();
-    arbolColores arbol = new Arbol();
+    Pieza pieza = new Pieza();
+    ArbolColores arbol = new ArbolColores(pieza.getColores());
+    //
+
+    
 
 
 }

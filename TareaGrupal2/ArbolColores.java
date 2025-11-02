@@ -151,6 +151,37 @@ public class ArbolColores{
         }
         return nodo;
     }
+
+    /**
+     * Metodo que retorna que tanta frecuencia tiene un color en el arbol. Si retorna 6 es porque es menos frecuente, asi iria de 5,4,3,2, hasta el 1 que seria el color mas frecuente
+     * @return el top de frecuencia del color
+     */
+    private int posicionColor(String color) {
+        return (6 - posicionColorRec(this.raiz, color, new int[]{0}) +1 );
+    }
+
+    /**
+     * Metodo recursivo privado que retorna la posicion del color de acuerdo a la frecuencia, 1 menos frecuente, hasta 6 mas frecuent
+     * @param nodo el nodo actual en el que revisamos el color
+     * @param color el color que queremos buscar
+     * @param contador el contador que nos verifica la frecuencia del color
+     */
+    private int posicionColorRec(NodoArbol nodo, String color, int[] contador) {
+        if (nodo == null){
+            return -1;
+        } 
+        int izq = posicionColorRec(nodo.getIzquierdo(), color, contador);
+        if (izq != -1) {
+            return izq;
+        }
+        contador[0]++;
+
+        if (nodo.getColor().equals(color)){
+            return contador[0];
+        } 
+        return posicionColorRec(nodo.getDerecho(), color, contador);
+    }
+
 }
 
 
