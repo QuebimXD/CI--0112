@@ -156,7 +156,7 @@ public class ArbolColores{
      * Metodo que retorna que tanta frecuencia tiene un color en el arbol. Si retorna 6 es porque es menos frecuente, asi iria de 5,4,3,2, hasta el 1 que seria el color mas frecuente
      * @return el top de frecuencia del color
      */
-    private int posicionColor(String color) {
+    public int posicionColor(String color) {
         return (6 - posicionColorRec(this.raiz, color, new int[]{0}) +1 );
     }
 
