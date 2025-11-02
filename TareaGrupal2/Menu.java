@@ -1,11 +1,37 @@
-public class Menu{
+import java.util.Scanner;
+public class Menu {
+    private Scanner sc;
+    private Juego juego;
 
-    Tablero tablero = new Tablero();
-    Pieza pieza = new Pieza();
-    ArbolColores arbol = new ArbolColores(pieza.getColores());
-    //
+    public Menu() {
+        sc = new Scanner(System.in);
+        int opt = 0;
 
-    
+        while(opt != 3) {
+            System.out.println("1- Nueva Partida\n2- Ver puntaje\n3- Salir");
+            try {
+                opt = sc.nextInt();
+                sc.nextLine(); // limpiar buffer
 
+                switch(opt) {
+                    case 1:
+                        juego = new Juego();
+                        juego.jugar();
+                        break;
+                    case 2:
+                        System.out.println("Puntaje obtenido= " + juego.obtenerPuntaje());
+                        break;
+                    case 3:
+                        System.out.println("Chao!");
+                        break;
+                    default:
+                        System.out.println("Digite un número válido");
+                }
+            } catch(Exception e) {
+                System.err.println("Digite un número");
+                sc.nextLine(); // limpiar buffer
+            }
+        }
+    }
 
 }
