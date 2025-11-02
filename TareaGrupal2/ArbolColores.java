@@ -50,17 +50,6 @@ public class ArbolColores{
                 nodo.setDerecho(agregar(nodo.getDerecho(), nuevo));
             }
         }
-        
-        //Actualizamos la altura, para que el arbol sea autobalanceado
-        int alturaNuevoNodo = 0;
-
-        if(nodo.getIzquierdo() != null){
-            alturaNuevoNodo = nodo.getIzquierdo().getAltura();
-        }
-        if(nodo.getDerecho() != null){
-            alturaNuevoNodo = Math.max(alturaNuevoNodo, nodo.getDerecho().getAltura());
-        }
-        nodo.setAltura(alturaNuevoNodo + 1);
         return nodo;
     }
 
@@ -71,7 +60,10 @@ public class ArbolColores{
      * @param c el color por encontrar.
      * @return el nodo con el respectivo color.
      */
-    private NodoArbol buscarColor(NodoArbol nodo, String c){
+    public NodoArbol buscar(String c){
+        return buscarRec(this.raiz, c);
+    }
+    private NodoArbol buscarRec(NodoArbol nodo, String c){
 
         if(nodo == null){
             return null;
@@ -80,11 +72,11 @@ public class ArbolColores{
         if(nodo.getColor().equals(c)){
             return nodo;
         }
-        NodoArbol izquierdo = buscarColor(nodo.getIzquierdo(), c);
+        NodoArbol izquierdo = buscarRec(nodo.getIzquierdo(), c);
         if(izquierdo != null){
             return izquierdo;
         }
-        return buscarColor(nodo.getDerecho(), c);
+        return buscarRec(nodo.getDerecho(), c);
     }
 
     /**
@@ -93,7 +85,7 @@ public class ArbolColores{
      * @param frec la frecuencia q vamos a aniadir al nodo
      */
     public void actualizarFrecuencia(String c, int frec){
-        NodoArbol nodo = buscarColor(this.raiz, c);
+        NodoArbol nodo = buscar(c);
         
         if(nodo!= null){
             nodo.setFrecuencia(nodo.getFrecuencia() + frec);
@@ -143,17 +135,6 @@ public class ArbolColores{
             nodo.setIzquierdo(eliminar(nodo.getIzquierdo(), c));
             nodo.setDerecho(eliminar(nodo.getDerecho(), c));
         }
-
-        //Actualizamos la altura, para que el arbol sea autobalanceado
-        int alturaNuevoNodo = 0;
-
-        if(nodo.getIzquierdo() != null){
-            alturaNuevoNodo = nodo.getIzquierdo().getAltura();
-        }
-        if(nodo.getDerecho() != null){
-            alturaNuevoNodo = Math.max(alturaNuevoNodo, nodo.getDerecho().getAltura());
-        }
-        nodo.setAltura(alturaNuevoNodo + 1);
         return nodo;
     }
 
