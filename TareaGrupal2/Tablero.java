@@ -13,14 +13,13 @@ public class Tablero {
         iniciarTablero();
         actualizarTablero();
     }
-    public int calcularFrecuenciaColor(String color){
+
+    public int calcularFrecuenciaColorFila(String color, int fila){
         int contador = 0; 
-        for (int i = 0; i < tablero.length; i++){
-            for (int j = 0; j < tablero[0].length; j++){
-                if(tablero[i][j].equals("color")){
+        for (int i = 0; i < tablero[0].length; i++){
+                if(tablero[fila][i].equals("color")){
                     contador++;
                 }
-            }
         }
         return (int)(contador / 100);
     }
