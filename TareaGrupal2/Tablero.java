@@ -45,7 +45,7 @@ public class Tablero {
         }
         return filaLlena;
     }
-    public int limpiarFila(int fila){
+    public int calcularPuntajePorFila(int fila){
         this.fila = fila;
         puntajePorFila = 0;
         String colorDominante = "";
@@ -71,7 +71,7 @@ public class Tablero {
             }
             if(contador > contadorDominante){
                 contadorDominante = contador; 
-                mejorColor =color;
+                mejorColor = color;
             }
         }
         return getColorDominante(color, indice + 1, contador, mejorColor);
