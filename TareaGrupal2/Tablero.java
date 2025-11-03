@@ -45,6 +45,19 @@ public class Tablero {
         }
         return filaLlena;
     }
+
+    public void eliminarFila(int fila){
+        if(fila - 1 < 0){
+            return;
+        }
+        if(verificarFilallena(fila)){
+            for(int i = 0; i < tablero[fila].length; i++){
+                int nuevaFila = fila -1; 
+                    tablero[fila][i] = tablero[nuevaFila][i];
+            }
+            eliminarFila(fila-1);
+        }
+    }
     public int calcularPuntajePorFila(int fila){
         this.fila = fila;
         puntajePorFila = 0;
