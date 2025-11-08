@@ -18,10 +18,22 @@ public class Tablero {
         actualizarTablero();
     }
 
-    public boolean sePuedeColocarPieza(Pieza pieza, int x, int y){
+    public boolean colisionoPieza(Pieza pieza, int x, int y){
         if(x > 0 && y > 0 && x< tablero.length && y < tablero[0].length){
-            //tablero[x][y] == pieza.getForma();
-        }
+            for (int i = 0; i < pieza.getPieza().length; i++) {
+                for (int j = 0; j < pieza.getPieza()[i].length; j++) {
+                    Bloque bloque = pieza.getPieza()[i][j];
+                    if (bloque != null) {
+                    int filaB = x + i;
+                    int colB = y + j;
+                    if (filaB < 0 || filaB >= tablero.length || colB < 0 || colB >= tablero[0].length)
+                        return true; // Se sale del tablero
+                    if (!tablero[filaB][colB].equals("-"))
+                        return true; // Choca con algo
+                    }
+                }
+            }
+    }
         return false;
     }
 
@@ -32,8 +44,23 @@ public class Tablero {
     }
 
     public void moverPieza(Pieza pieza, String movimiento){
+        int fila = pieza.getFila();
+        int col = pieza.getColumna();
+        switch(movimiento){
+            case "D": 
+                if(!colisionoPieza(pieza, fila, col + 1)){
+                    col++;
+                }
+            case "A":
 
-    }
+                break;
+            case "S":
+                break;
+            default: 
+                break;
+            }
+        }
+    
     public int calcularFrecuenciaColorFila(String color, int fila){
         int contador = 0; 
         for (int i = 0; i < tablero[0].length; i++){
@@ -53,18 +80,23 @@ public class Tablero {
         }
         return filaLlena;
     }
-
     public void eliminarFila(int fila){
-        if(fila - 1 < 0){
+        if(verificarFilallena(fila)){
+            eliminarFilaR(fila);
+        }
+    }
+    private void eliminarFilaR(int fila){
+        if(fila == 0){
+            for(int i = 0; i < tablero[0].length; i++){
+                tablero[fila][i] = "-";
+            }
             return;
         }
-        if(verificarFilallena(fila)){
             for(int i = 0; i < tablero[fila].length; i++){
                 int nuevaFila = fila -1; 
                     tablero[fila][i] = tablero[nuevaFila][i];
             }
             eliminarFila(fila-1);
-        }
     }
     public int calcularPuntajePorFila(int fila){
         this.fila = fila;
