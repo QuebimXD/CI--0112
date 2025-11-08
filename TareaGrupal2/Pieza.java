@@ -1,6 +1,8 @@
 public class Pieza{
-    //private String[] colores;
+    
     private String nombre;
+    private int fila;
+    private int columna;
     private Bloque[][] pieza;  //inicialmente
     private Bloque[] bloques; // los 4 bloques con su color aleatorio
     //private int posicionBloque;
@@ -15,6 +17,35 @@ public class Pieza{
     }
 
     /**
+     * Metodo que retorna la posicion de la pieza, para efectos de Tablero
+     * @return la fila en la que se encuentra
+     */
+    public int getFila(){
+        return fila;
+    }
+    /**
+     * Metodo que retorna la posicion de la columna, para efectos de Tablero
+     * @return la columna en la que se encuentra
+     */
+    public int getColumna(){
+        return columna;
+    }
+    /**
+     * Metodo fijo que cambia la posicion de la pieza en filass en el tablero
+     * @param f la nueva fila a la que cambiamos la pieza
+     */
+    public void setFila(int f){
+        this.fila = f;
+    }
+    /**
+     * Metodo fijo que cambia la posicionpieza en columnas en el tablero
+     * @param c la nueva columna a la que cambiamos la pieza
+     */
+    public void setColumna(int c){
+        this.columna = c;
+    }
+
+    /**
      * Metodo que retorna la pieza para efectos de Tablero
      * @return la pieza y su forma
      */
@@ -26,7 +57,8 @@ public class Pieza{
      * Metodo constructor que inicializa la pieza, se escogen los colores de los bloques de esta y tambien su forma, de manera aleatoria.
      */
     public Pieza(){
-        //posicionBloque = 0;
+        this.fila = 0;
+        this.columna = 5;
         bloques = new Bloque[4];
         pieza = new Bloque[4][2]; //inicialmente, luego se cambia dependiendo de la forma
             
@@ -38,8 +70,6 @@ public class Pieza{
 
         int indiceForma = (int)(Math.random() * 4);
         elegirForma(indiceForma);
-        imprimirPieza();
-        System.out.println(nombre);
     }
 
     /**
