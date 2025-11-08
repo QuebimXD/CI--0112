@@ -33,7 +33,7 @@ public class Juego{
 
             //Logica del movimiento, hasta que la pieza no haya tocado otras piezas, se seguiria moviendo la misma
 
-            while(!piezaColisiono(pieza)){ //Hacer metodo que verifique esta colision
+            while(!tablero.piezaColisiono(pieza)){ //Hacer metodo que verifique esta colision
                 
                 tablero.actualizarTablero();
                 System.out.println("###########\n" + "Puntaje actual: " + tablero.getPuntajeFinal()  + "\n###########");
@@ -85,7 +85,7 @@ public class Juego{
         return mov;
     }
 
-    public int obtenerPuntaje(){
-        return 0;
-    }
+    //public int obtenerPuntaje(){
+        //return tablero.getPuntajeFinal();
+    //}
 }

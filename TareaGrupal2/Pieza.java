@@ -15,6 +15,14 @@ public class Pieza{
     }
 
     /**
+     * Metodo que retorna la pieza para efectos de Tablero
+     * @return la pieza y su forma
+     */
+    public Bloque[][] getPieza(){
+        return pieza;
+    }
+
+    /**
      * Metodo constructor que inicializa la pieza, se escogen los colores de los bloques de esta y tambien su forma, de manera aleatoria.
      */
     public Pieza(){
