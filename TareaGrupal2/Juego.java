@@ -39,7 +39,7 @@ public class Juego{
 
                 //Logica del movimiento, hasta que la pieza no haya tocado otras piezas, se seguiria moviendo la misma
 
-                while(!tablero.piezaColisiono(pieza, pieza.getFila(), pieza.getColumna())){
+                while(!tablero.colisionoPieza(pieza, pieza.getFila(), pieza.getColumna())){
                 
                     tablero.actualizarTablero();
                     System.out.println("###########\n" + "Puntaje actual: " + tablero.getPuntajeFinal()  + "\n###########");
@@ -52,7 +52,7 @@ public class Juego{
                     }
                 
                     //Si el usuario ya no puede seguir se acaba la partida
-                    if(tablero.tableroLleno() ){
+                    if(tablero.colisionoPieza(pieza, pieza.getFila(), pieza.getColumna())){
                         System.out.println("Perdiste :(");
                         juega = false;
                         break; //Para el while de la colision
@@ -63,7 +63,7 @@ public class Juego{
                     tablero.agregarPieza(pieza, pieza.getFila(), pieza.getColumna());
                     //Eliminamos las filas llenas y hacemos la logica de ir calculando el puntaje
                     for(int f = 19; f >= 0; f--){
-                        if(tablero.verificarFilaLlena(f)){
+                        if(tablero.verificarFilallena(f)){
                             tablero.eliminarFila(f);
                             tablero.calcularPuntajePorFila(f);
                         }
@@ -121,8 +121,7 @@ public class Juego{
         return mov;
     }
 
-    //public int obtenerPuntaje(){
-        //return tablero.getPuntajeFinal();
-    //}
-
+    public int obtenerPuntaje(){
+        return tablero.getPuntajeFinal();
+    }
 }
