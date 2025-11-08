@@ -152,14 +152,44 @@ public class Tablero {
         return puntajeFinal;
     }
 
-    public void actualizarTablero(){
-        for (int i = 0; i < tablero.length; i++){
-            for (int j = 0; j < tablero[0].length; j++){
-                System.out.print(tablero[i][j]);
-            }
-            System.out.println();
+    public void actualizarTablero() {
+    String[][] copia = new String[tablero.length][tablero[0].length];
+
+    // Copiamos el tablero actual
+    for (int i = 0; i < tablero.length; i++) {
+        for (int j = 0; j < tablero[0].length; j++) {
+            copia[i][j] = tablero[i][j];
         }
     }
+
+    // Dibujamos la pieza temporalmente (con colores y *)
+    for (int i = 0; i < pieza.getPieza().length; i++) {
+        for (int j = 0; j < pieza.getPieza()[i].length; j++) {
+            Bloque b = pieza.getPieza()[i][j];
+            if (b != null) {
+                int fila = pieza.getFila() + i;
+                int col = pieza.getColumna() + j;
+                if (fila >= 0 && fila < tablero.length && col >= 0 && col < tablero[0].length) {
+                    copia[fila][col] = pieza.getColorAnsi(b.getColor()) + "*" + "\u001B[0m";
+                }
+            }
+        }
+    }
+
+    // Imprimimos la copia
+    for (int i = 0; i < copia.length; i++) {
+        for (int j = 0; j < copia[0].length; j++) {
+            String celda = copia[i][j];
+            if (celda == null || celda.equals(" ")) {
+                System.out.print("  ");
+            } else {
+                System.out.print(celda);
+            }
+        }
+        System.out.println();
+    }
+}
+
     public void iniciarTablero(){
         for (int i = 0; i < tablero.length; i++){
             for (int j = 0; j < tablero[0].length; j++){

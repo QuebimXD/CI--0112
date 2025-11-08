@@ -40,7 +40,7 @@ public class Juego{
                 //Logica del movimiento, hasta que la pieza no haya tocado otras piezas, se seguiria moviendo la misma
 
                 while(!tablero.colisionoPieza(pieza, pieza.getFila(), pieza.getColumna())){
-                
+                    
                     tablero.actualizarTablero();
                     System.out.println("###########\n" + "Puntaje actual: " + tablero.getPuntajeFinal()  + "\n###########");
                     String mov = movimientoUsuario();
