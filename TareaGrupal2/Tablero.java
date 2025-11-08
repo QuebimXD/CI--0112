@@ -19,7 +19,6 @@ public class Tablero {
     }
 
     public boolean colisionoPieza(Pieza pieza, int x, int y){
-        if(x > 0 && y > 0 && x< tablero.length && y < tablero[0].length){
             for (int i = 0; i < pieza.getPieza().length; i++) {
                 for (int j = 0; j < pieza.getPieza()[i].length; j++) {
                     Bloque bloque = pieza.getPieza()[i][j];
@@ -33,33 +32,51 @@ public class Tablero {
                     }
                 }
             }
-    }
         return false;
     }
 
     public void agregarPieza(Pieza pieza, int x, int y){
-        if(x > 0 && y > 0 && x< tablero.length && y < tablero[0].length){
-            //tablero[x][y] == pieza.getForma();
+            for (int i = 0; i < pieza.getPieza().length; i++) {
+                for (int j = 0; j < pieza.getPieza()[i].length; j++) {
+                    Bloque bloque = pieza.getPieza()[i][j];
+                    int filaB = x + i; 
+                    int colB = y + i;
+                    if(filaB >= 0 && colB >= 0 && filaB < tablero.length && colB < tablero[0].length){
+                    tablero[filaB][colB] = bloque.getColor();
+                    }
+                }
+            }
+        this.pieza = new Pieza();
+        for (int f = 0; f < tablero.length; f++) {
+            if (verificarFilallena(f)) {
+            eliminarFila(f);
+             }   
         }
     }
-
     public void moverPieza(Pieza pieza, String movimiento){
         int fila = pieza.getFila();
         int col = pieza.getColumna();
         switch(movimiento){
             case "D": 
-                if(!colisionoPieza(pieza, fila, col + 1)){
-                    col++;
-                }
+                col++;
             case "A":
-
+                col--;
                 break;
             case "S":
+                fila++;
                 break;
             default: 
                 break;
-            }
         }
+        if(colisionoPieza(pieza, fila, col)){
+            int filaFinal =pieza.getFila();
+            int colFinal = pieza.getColumna();
+            agregarPieza(pieza, filaFinal, colFinal);
+        }else{
+            pieza.setFila(fila);
+            pieza.setColumna(col);
+        }
+    }
     
     public int calcularFrecuenciaColorFila(String color, int fila){
         int contador = 0; 
