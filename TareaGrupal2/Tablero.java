@@ -11,6 +11,7 @@ public class Tablero {
 
     public Tablero(){
         tablero = new String[20][10];
+        pieza = new Pieza();
         colores = pieza.getColores();
         contadorDominante = 0;
         iniciarTablero();
@@ -18,6 +19,9 @@ public class Tablero {
     }
 
     public boolean sePuedeColocarPieza(Pieza pieza, int x, int y){
+        if(x > 0 && y > 0 && x< tablero.length && y < tablero[0].length){
+            //tablero[x][y] == pieza.getForma();
+        }
         return false;
     }
 
@@ -25,6 +29,10 @@ public class Tablero {
         if(x > 0 && y > 0 && x< tablero.length && y < tablero[0].length){
             //tablero[x][y] == pieza.getForma();
         }
+    }
+
+    public void moverPieza(Pieza pieza, String movimiento){
+
     }
     public int calcularFrecuenciaColorFila(String color, int fila){
         int contador = 0; 
@@ -62,34 +70,34 @@ public class Tablero {
         this.fila = fila;
         puntajePorFila = 0;
         String colorDominante = "";
+        contadorDominante = 0;
         if (verificarFilallena(fila)){
-            colorDominante = getColorDominante(colores[0], 0, 0, colores[0]);
+            colorDominante = getColorDominante(colores[0], 0, colores[0]);
             puntajePorFila = arbolColor.posicionColor(colorDominante);
         }
         puntajeFinal += puntajePorFila;
         return puntajePorFila;
     }
-    public String getColorDominante(String color, int indice, int contador, String mejorColor){
-        if(color.equals(colores[colores.length-1]) && contador >= contadorDominante){
-            return color;
-        } else if(color.equals(colores[colores.length - 1])){
-            return mejorColor;
-        } 
-        else{
-            color = colores[indice + 1];
-            for (int i = 0; i < tablero[fila].length; i++){
-                if(tablero[fila][i].equals(color)){
-                    contador++;
+    public String getColorDominante(String color, int indice, String mejorColor){
+                int contador = 0;
+                for (int i = 0; i < tablero[fila].length; i++){
+                    if(tablero[fila][i].equals(color) && tablero[fila][i] != null){
+                        contador++;
+                    }
                 }
+                if(contador > contadorDominante){
+                    contadorDominante = contador; 
+                    mejorColor = color;
+                }
+                if(indice == colores.length - 1){
+                    return mejorColor;
+                }
+                if(indice + 1 < colores.length){
+                color = colores[indice + 1];
             }
-            if(contador > contadorDominante){
-                contadorDominante = contador; 
-                mejorColor = color;
-            }
-        }
-        return getColorDominante(color, indice + 1, contador, mejorColor);
+        return getColorDominante(color, indice + 1, mejorColor);
     }
-    public int calcularPuntajeFinal(){
+    public int getPuntajeFinal(){
         return puntajeFinal;
     }
 
