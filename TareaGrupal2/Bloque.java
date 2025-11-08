@@ -1,5 +1,5 @@
 public class Bloque{
-    private String color;\
+    private String color;
     /**
      * Metodo constructor de Bloque
      * @param el color del respectivo
