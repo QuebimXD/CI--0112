@@ -88,7 +88,6 @@ public class Pieza{
         }
        
     }
-
     /**
      * Metodo que retorna en codigo ANSI (Para efectos de terminal) el respectivo color de la lista
      * @param color el color que posee el bloque, con el swtich se verifica cual es.

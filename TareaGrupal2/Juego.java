@@ -4,15 +4,14 @@ public class Juego{
     private Scanner sc;
     private Tablero tablero;
     private ArbolColores arbol;
+    private Pieza p;
 
     /*
      * Constructor de clase Juego. Inicializa el tablero, el arbol con la lista de los colores junto a una frecuencia inicial de cero, y el escaner.
      */
     public Juego(){
-        tablero = new Tablero();
-        arbol = new ArbolColores(p.getColores());
         sc = new Scanner(System.in);
-
+        p = new Pieza(); //Esta pieza solo para llamar a la lista de colores
     }
 
     /**
@@ -23,41 +22,78 @@ public class Juego{
      * Termina la partida si el tablero esta lleno (Es decir, no se pueden poner mas piezas), y muestra el puntaje final.
      */
 
-    // POR HACER: piezaColisiono(Pieza pieza), rotarPieza(), moverPieza(Pieza pieza, String mov), tablero.tableroLleno(), tablero.getPuntajeFinal()
     public void jugar(){
-        boolean jugando = true;
-        while(jugando){
 
-            //Sacamos una nueva pieza
-            Pieza pieza = new Pieza();
+        boolean seguirJugando = true;
+        while(seguirJugando){
 
-            //Logica del movimiento, hasta que la pieza no haya tocado otras piezas, se seguiria moviendo la misma
+            tablero = new Tablero();
+            arbol = new ArbolColores(p.getColores());
 
-            while(!tablero.piezaColisiono(pieza)){ //Hacer metodo que verifique esta colision
+            boolean juega = true;
+
+            while(juega){
+
+                //Sacamos una nueva pieza
+                Pieza pieza = new Pieza();
+
+                //Logica del movimiento, hasta que la pieza no haya tocado otras piezas, se seguiria moviendo la misma
+
+                while(!tablero.piezaColisiono(pieza, pieza.getFila(), pieza.getColumna())){
                 
-                tablero.actualizarTablero();
-                System.out.println("###########\n" + "Puntaje actual: " + tablero.getPuntajeFinal()  + "\n###########");
+                    tablero.actualizarTablero();
+                    System.out.println("###########\n" + "Puntaje actual: " + tablero.getPuntajeFinal()  + "\n###########");
+                    String mov = movimientoUsuario();
 
-                tablero.actualizarTablero();
+                    if(mov.equals("r")){
+                        pieza.rotarPieza();
+                    }else{
+                        tablero.moverPieza(pieza, mov); //Por hacer
+                    }
                 
-                String mov = movimientoUsuario();
-                if(mov.equals("r")){
-                    pieza.rotarPieza();
-                }else{
-                    tablero.moverPieza(pieza, mov); //Por hacer
+                    //Si el usuario ya no puede seguir se acaba la partida
+                    if(tablero.tableroLleno() ){
+                        System.out.println("Perdiste :(");
+                        juega = false;
+                        break; //Para el while de la colision
+                    }
                 }
-                
-
-                //Si el usuario ya no puede seguir se acaba la partida
-                if(tablero.tableroLleno() ){
-                    System.out.println("Perdiste :(");
-                    jugando = false;
+                if(juega){
+                    //Fijamos la pieza en donde se encuentre actualmente
+                    tablero.agregarPieza(pieza, pieza.getFila(), pieza.getColumna());
+                    //Eliminamos las filas llenas y hacemos la logica de ir calculando el puntaje
+                    for(int f = 19; f >= 0; f--){
+                        if(tablero.verificarFilaLlena(f)){
+                            tablero.eliminarFila(f);
+                            tablero.calcularPuntajePorFila(f);
+                        }
+                    }
                 }
             }
 
+            System.out.println("Puntaje final = " + tablero.getPuntajeFinal() + "\n");
+            
+            boolean ciclo = true;
+            while(ciclo){
+                try{
+                    System.out.println("Quiere volver a jugar? s-si n-sno");
+                    String r = sc.nextLine().trim().toLowerCase();
+                
+                    if(!(r.equals("s")) && !(r.equals("n"))){
+                        System.out.println("Digite una opcion valida.");
+                    }else if(r.equals("n")){
+                        seguirJugando = false;
+                        ciclo = false;
+                        System.out.println("Termina partida. GG");
+                    }else{
+                        seguirJugando = true;
+                        ciclo = false; //Si selecciona s entonces quiere volver a jugar
+                    }
+                }catch(Exception e){
+                    System.err.println("Error ocurrido por: " + e);
+                }
+            }
         }
-        System.out.println("Puntaje final= " + tablero.getPuntajeFinal());
-
     }
 
     /**
@@ -88,4 +124,5 @@ public class Juego{
     //public int obtenerPuntaje(){
         //return tablero.getPuntajeFinal();
     //}
+
 }
