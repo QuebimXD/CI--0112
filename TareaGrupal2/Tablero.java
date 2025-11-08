@@ -39,11 +39,13 @@ public class Tablero {
             for (int i = 0; i < pieza.getPieza().length; i++) {
                 for (int j = 0; j < pieza.getPieza()[i].length; j++) {
                     Bloque bloque = pieza.getPieza()[i][j];
-                    int filaB = x + i; 
-                    int colB = y + i;
-                    if(filaB >= 0 && colB >= 0 && filaB < tablero.length && colB < tablero[0].length){
-                    tablero[filaB][colB] = bloque.getColor();
-                    }
+                    if(bloque != null){
+                        int filaB = x + i; 
+                        int colB = y + j;
+                        if(filaB >= 0 && colB >= 0 && filaB < tablero.length && colB < tablero[0].length){
+                            tablero[filaB][colB] = bloque.getColor();
+                        }
+                    } 
                 }
             }
         this.pieza = new Pieza();
