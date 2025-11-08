@@ -5,17 +5,25 @@ public class Juego{
     private Tablero tablero;
     private ArbolColores arbol;
 
+    /*
+     * Constructor de clase Juego. Inicializa el tablero, el arbol con la lista de los colores junto a una frecuencia inicial de cero, y el escaner.
+     */
     public Juego(){
         tablero = new Tablero();
-        Pieza p = new Pieza();
         arbol = new ArbolColores(p.getColores());
         sc = new Scanner(System.in);
 
     }
 
+    /**
+     * Metodo que inicia y controla el  flujo del juego en la consola, tiene la siguiente logica:
+     * Genera una pieza aleatoria de las cuatro declaradas en Pieza. Le permite al usuario realizar movimientos con la pieza (incluyendo la rotacion), manejando el cuidado de las colisiones.
+     * Actualiza el tablero, muestra el puntaje actual del tablero justo despues de que se realice un movimiento.
+     * Verifica si la pieza colisiona o ha llegado a los limites del tablero; si no, se puede mover; si si, vuelve a crearse una pieza nueva.
+     * Termina la partida si el tablero esta lleno (Es decir, no se pueden poner mas piezas), y muestra el puntaje final.
+     */
 
     // POR HACER: piezaColisiono(Pieza pieza), rotarPieza(), moverPieza(Pieza pieza, String mov), tablero.tableroLleno(), tablero.getPuntajeFinal()
-    
     public void jugar(){
         boolean jugando = true;
         while(jugando){
@@ -34,7 +42,7 @@ public class Juego{
                 
                 String mov = movimientoUsuario();
                 if(mov.equals("r")){
-                    pieza.rotarPieza(); //Por hacer 
+                    pieza.rotarPieza();
                 }else{
                     tablero.moverPieza(pieza, mov); //Por hacer
                 }
@@ -52,6 +60,10 @@ public class Juego{
 
     }
 
+    /**
+     *Metodo que le pregunta al usuario que movimiento quiere realizar, w rota, a izquierda, d dereca, s va hacia abajo. Tambien maneja errores por si el ususario no ha digitado una leta de movimiento.
+     *@ return la letra del movimiento seleccionada por el usuario.
+     */
     private String movimientoUsuario(){
         String mov = null;
         boolean seguir = false;

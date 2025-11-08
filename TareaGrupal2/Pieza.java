@@ -6,43 +6,78 @@ public class Pieza{
     //private int posicionBloque;
     private String [] colores = {"rojo", "amarillo", "verde", "morado", "azul", "naranja"};
 
+    /**
+     * Metodo que retorna la lista de colores que se tiene por predeterminado.
+     * @return la lista de colores
+     */
     public String[] getColores(){
         return colores;
     }
 
+    /**
+     * Metodo constructor que inicializa la pieza, se escogen los colores de los bloques de esta y tambien su forma, de manera aleatoria.
+     */
     public Pieza(){
         //posicionBloque = 0;
         bloques = new Bloque[4];
         pieza = new Bloque[4][2]; //inicialmente, luego se cambia dependiendo de la forma
-        
-        
-
+            
         for(int i = 0; i < bloques.length; i++){
-            int indice = (int)(Math.random() * 4);
-            String color = colores[indice];
+            int indiceColor = (int)(Math.random() * 6);
+            String color = colores[indiceColor];
             bloques[i] = new Bloque(color);
         }
-        int indice2 = (int)(Math.random() * 4);
-        elegirForma(indice2);
+
+        int indiceForma = (int)(Math.random() * 4);
+        elegirForma(indiceForma);
         imprimirPieza();
         System.out.println(nombre);
-
     }
+
+    /**
+     * Metodo que imprime en consola la pieza, para efectos de la clase Tablero. Acude a getColorAnsi, para que en consola cada "bloque" tenga su respectivo color 
+     */
     public void imprimirPieza(){
         for(Bloque [] filas: pieza){
             for(Bloque bloque: filas ){
                 if(bloque != null){
-                    System.out.print(bloque.getColor() + " ");
+                    System.out.print(getColorAnsi(bloque.getColor()) + "*"+ "\u001B[0m");
                 } else{
-                    System.out.print(" ");
+                    System.out.print("  ");
                 }
-                
             }
             System.out.println();
         }
        
     }
 
+    /**
+     * Metodo que retorna en codigo ANSI (Para efectos de terminal) el respectivo color de la lista
+     * @param color el color que posee el bloque, con el swtich se verifica cual es.
+     * @return el color respectivo en codigo ANSI. Si no es ninguno, retorna """
+     */
+    public String getColorAnsi(String color){
+        switch(color.toLowerCase()){
+            case "rojo":
+             return "\u001B[31m";
+            case "amarillo":
+             return "\u001B[33m";
+            case "verde":
+             return "\u001B[32m";
+            case "azul":
+             return "\u001B[34m";
+            case "morado":
+             return "\u001B[35m";
+            case "naranja":
+             return "\u001B[91m";
+            default:
+             return "";
+        }
+    }
+    /**
+     * Metodo fijo que elige la forma de un bloque. Declara cuatro bloques y con el switch declara la forma de la pieza, que no es mas que una matriz.
+     * @param indice el indice que define la forma. 0 es L, 1 es linea recta, 2 es la T y 3 es el cuadrado.
+     */
     public void elegirForma(int indice){
         Bloque bloque1 = bloques[0];
         Bloque bloque2 = bloques[1];
@@ -74,16 +109,21 @@ public class Pieza{
         }
     }
 
-    public void rotarPieza(String movimiento){
-        //rotación de acuerdo a las manecillas del reloj, es decir siempre hacia la derecha dependiendo de su rotación actual
+    /**
+     * Metodo fijo que se encarga de rotar la pieza a noventa grados en sentido horario.
+     * la formula para rotar los bloques noventa grados es la siguiente: nuevo[j][fil - 1 - i] = pieza[i][j];. fil no es mas que pieza.length, i.e. la longitud de la pieza.
+     */
+    public void rotarPieza(){
         int fil = pieza.length;
         int col = pieza[0].length;
         Bloque [][] nuevo = new Bloque[col][fil];
 
-        for(Bloque[] filas: pieza){
-            for(int i = pieza.length; i < 0; i++){
-                nuevo[0][i] = pieza[i][0];
+        for(int i = 0; i < fil; i++){
+            for(int j = 0; j < col; j++){
+                if(pieza[i][j] != null)
+                nuevo[j][fil - 1 - i] = pieza[i][j];
             }
         }
+        pieza = nuevo;
     }
 }

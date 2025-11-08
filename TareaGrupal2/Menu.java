@@ -3,6 +3,10 @@ public class Menu {
     private Scanner sc;
     private Juego juego;
 
+    /**
+     * Metodo constructor que se le muestra al usuario inicialmente. Le pregunta si quiere jugar una nueva partida, ver el puntaje de su partida anterior, o si se quiere salir. 
+     * Hay manejo de errores que evitan que el usuario digite cosas no esperadas. Por ejemplo, si digita otro numero o un caracter.
+     */
     public Menu() {
         sc = new Scanner(System.in);
         int opt = 0;
