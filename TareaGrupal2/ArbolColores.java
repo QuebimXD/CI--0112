@@ -1,3 +1,9 @@
+/*
+ * Esta es la clase es del arbol principal.
+ * @ RodrigoLovers
+ * @version 1.0
+ */
+
 public class ArbolColores{
     private NodoArbol raiz;
 

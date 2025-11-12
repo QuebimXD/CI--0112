@@ -1,3 +1,9 @@
+/*
+ * Clase tipo controlador de tablero
+ * @ RodrigoLovers
+ * @version 1.0
+ */
+
 public class Tablero {
     private String[][] tablero;
     private Pieza pieza; // referencia a la pieza que va cayendo
@@ -15,7 +21,7 @@ public class Tablero {
         colores = pieza.getColores();
         contadorDominante = 0;
         iniciarTablero();
-        actualizarTablero();
+        //actualizarTablero();
     }
 
     public boolean colisionoPieza(Pieza pieza, int x, int y){
@@ -59,12 +65,15 @@ public class Tablero {
         int fila = pieza.getFila();
         int col = pieza.getColumna();
         switch(movimiento){
-            case "D": 
+            case "d": 
                 col++;
-            case "A":
-                col--;
+                fila++;
                 break;
-            case "S":
+            case "a":
+                col--;
+                fila++;
+                break;
+            case "s":
                 fila++;
                 break;
             default: 
@@ -152,7 +161,7 @@ public class Tablero {
         return puntajeFinal;
     }
 
-    public void actualizarTablero() {
+    public void actualizarTablero(Pieza pieza) {
     String[][] copia = new String[tablero.length][tablero[0].length];
 
     // Copiamos el tablero actual

@@ -1,3 +1,9 @@
+/*
+ * Esta es la clase modelo del la pieza
+ * @ RodrigoLovers
+ * @version 1.0
+ */
+
 public class Pieza{
     
     private String nombre;

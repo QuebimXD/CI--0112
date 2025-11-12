@@ -1,3 +1,9 @@
+/*
+ * Esta es la clase de los nodos del arbol
+ * @ RodrigoLovers
+ * @version 1.0
+ */
+
 public class NodoArbol {
     private String color;
     private int frecuencia;

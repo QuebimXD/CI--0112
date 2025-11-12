@@ -1,3 +1,9 @@
+/*
+ * Esta es la clase modelo del bloque.
+ * @ RodrigoLovers
+ * @version 1.0
+ */
+
 public class Bloque{
     private String color;
     /**

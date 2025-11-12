@@ -1,4 +1,11 @@
 import java.util.Scanner;
+
+/*
+ * Clase de tipo Controlador principal
+ * @ RodrigoLovers
+ * @version 1.0
+ */
+
 public class Menu {
     private Scanner sc;
     private Juego juego;

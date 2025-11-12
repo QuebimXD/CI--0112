@@ -1,5 +1,10 @@
-import java.util.Scanner;
+/*
+ * Esta es la clase principal del juego.
+ * @ RodrigoLovers
+ * @version 1.0
+ */
 
+import java.util.Scanner;
 public class Juego{
     private Scanner sc;
     private Tablero tablero;
@@ -41,9 +46,10 @@ public class Juego{
 
                 while(!tablero.colisionoPieza(pieza, pieza.getFila(), pieza.getColumna())){
                     
-                    tablero.actualizarTablero();
+                    tablero.actualizarTablero(pieza);
                     System.out.println("###########\n" + "Puntaje actual: " + tablero.getPuntajeFinal()  + "\n###########");
                     String mov = movimientoUsuario();
+                    System.out.println(mov);
 
                     if(mov.equals("r")){
                         pieza.rotarPieza();
