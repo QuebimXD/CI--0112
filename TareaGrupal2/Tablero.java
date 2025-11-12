@@ -41,6 +41,25 @@ public class Tablero {
         return false;
     }
 
+    public boolean finalizaJuego(Pieza pieza){
+        boolean estado = false; //no ha finalizado el juego
+        int contador = 0;
+        while(contador != pieza.getPieza().length){
+            int fila = pieza.getPieza().length;
+            if(tablero[contador][5].equals("-") && contador < fila){ 
+                estado = false;
+                contador++;
+            }else if (contador == fila){
+                estado = false;
+            }else if(!tablero[contador][5].equals("-")){
+                estado = true;
+                contador = pieza.getPieza().length;
+            }
+        }
+
+        return estado;
+    }
+
     public void agregarPieza(Pieza pieza, int x, int y){
             for (int i = 0; i < pieza.getPieza().length; i++) {
                 for (int j = 0; j < pieza.getPieza()[i].length; j++) {
@@ -49,7 +68,7 @@ public class Tablero {
                         int filaB = x + i; 
                         int colB = y + j;
                         if(filaB >= 0 && colB >= 0 && filaB < tablero.length && colB < tablero[0].length){
-                            tablero[filaB][colB] = bloque.getColor();
+                            tablero[filaB][colB] = pieza.getColorAnsi(bloque.getColor()) + "*" + "\u001B[0m";
                         }
                     } 
                 }
@@ -102,7 +121,7 @@ public class Tablero {
     public boolean verificarFilallena(int fila){
         boolean filaLlena = true;
         for(int i = 0; i < tablero[fila].length; i++){
-            if(tablero[fila][i] == null || tablero[fila][i] == "-"){
+            if(tablero[fila][i] == null || tablero[fila][i].equals("-")){
                 filaLlena = false;
             }
         }

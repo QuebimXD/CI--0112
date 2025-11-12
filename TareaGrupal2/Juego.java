@@ -49,7 +49,6 @@ public class Juego{
                     tablero.actualizarTablero(pieza);
                     System.out.println("###########\n" + "Puntaje actual: " + tablero.getPuntajeFinal()  + "\n###########");
                     String mov = movimientoUsuario();
-                    System.out.println(mov);
 
                     if(mov.equals("r")){
                         pieza.rotarPieza();
@@ -58,7 +57,7 @@ public class Juego{
                     }
                 
                     //Si el usuario ya no puede seguir se acaba la partida
-                    if(tablero.colisionoPieza(pieza, pieza.getFila(), pieza.getColumna())){
+                    if(tablero.finalizaJuego(pieza)){
                         System.out.println("Perdiste :(");
                         juega = false;
                         break; //Para el while de la colision

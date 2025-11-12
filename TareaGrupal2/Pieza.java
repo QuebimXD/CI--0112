@@ -129,7 +129,7 @@ public class Pieza{
         
         switch(indice){
             case 0:
-                 Bloque[][] forma = {{bloque1}, {bloque2}, {bloque3, bloque4}};
+                 Bloque[][] forma = {{bloque1, null}, {bloque2, null}, {bloque3, bloque4}};
                  pieza = forma;
                  nombre = "L";
                  break;
@@ -139,7 +139,7 @@ public class Pieza{
                 nombre = "Línea recta";
                 break;
             case 2:
-                Bloque[][] forma3 = {{bloque1}, {bloque2, bloque3}, {bloque4}};
+                Bloque[][] forma3 = {{bloque1, null}, {bloque2, bloque3}, {bloque4, null}};
                 pieza = forma3;
                 nombre = "T";
                 break;
