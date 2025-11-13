@@ -23,7 +23,13 @@ public class Tablero {
         iniciarTablero();
         //actualizarTablero();
     }
-
+    /**
+     * Metodo que retorna si la pieza ha chocado o se ha salido del tablero
+     * @param pieza la pieza que esta cayendo y queremos posicionar
+     * @param x posición de la fila actual
+     * @param y posición de la columna actual
+     * @return true si se cumple alguna condición de choque, false en caso contrario
+     */
     public boolean colisionoPieza(Pieza pieza, int x, int y){
             for (int i = 0; i < pieza.getPieza().length; i++) {
                 for (int j = 0; j < pieza.getPieza()[i].length; j++) {
@@ -60,6 +66,13 @@ public class Tablero {
         return estado;
     }
 
+    /**
+     * Metodo que agrega la pieza al tablero en una posición fija si cumple ciertas condiciones
+     * @param pieza la pieza que esta cayendo y queremos posicionar
+     * @param x posición de la fila actual
+     * @param y posición de la columna actual
+     * 
+     */
     public void agregarPieza(Pieza pieza, int x, int y){
             for (int i = 0; i < pieza.getPieza().length; i++) {
                 for (int j = 0; j < pieza.getPieza()[i].length; j++) {
@@ -75,6 +88,13 @@ public class Tablero {
             }
         this.pieza = new Pieza();
     }
+
+    /**
+     * Metodo que mueve la pieza hacia la izquierda, derecha o hacia abajo una posición.
+     * @param pieza la pieza que esta cayendo y queremos posicionar
+     * @param movimiento movimiento que se quiere realizar
+     * 
+     */
     public void moverPieza(Pieza pieza, String movimiento){
         int fila = pieza.getFila();
         int col = pieza.getColumna();
@@ -103,6 +123,12 @@ public class Tablero {
         }
     }
     
+    /**
+     * Metodo que retorna la frecuencia de un color en base a cuanto aparece en una fila
+     * @param color color que queremos calcular
+     * @param fila fila donde queremos calcular la frecuencia
+     * @return la frecuencia de un color en específico
+     */
     public int calcularFrecuenciaColorFila(String color, int fila){
         int contador = 0; 
         for (int i = 0; i < tablero[0].length; i++){
@@ -113,6 +139,12 @@ public class Tablero {
         return (int)(contador / 100);
     }
 
+    /**
+     * Metodo que retorna si una fila se encunetra llena de bloques
+
+     * @param fila fila que queremos verificar
+     * @return true si esta llena, falso si no es el caso
+     */
     public boolean verificarFilallena(int fila){
         boolean filaLlena = true;
         for(int i = 0; i < tablero[fila].length; i++){
@@ -122,11 +154,21 @@ public class Tablero {
         }
         return filaLlena;
     }
+    /**
+     * Metodo que llama a un método recursivo de eliminar filas y verificar que la fila esté llena antes de llamarlo
+     * @param fila fila que se necesita eliminar
+     *
+     */
     public void eliminarFila(int fila){
         if(verificarFilallena(fila)){
             eliminarFilaR(fila);
         }
     }
+    /**
+     * Metodo recursivo que elimina una fila llena y reemplaza esta fila con las que se encuentran arriba de ella
+     * @param fila fila que se requiere eliminar
+     *
+     */
     private void eliminarFilaR(int fila){
         //Caso base: cuando llegamos a la primera fila
         if(fila == 0){
@@ -143,6 +185,11 @@ public class Tablero {
             }
             eliminarFilaR(fila-1);
     }
+    /**
+     * Metodo que calcula el puntaje de esa fila en base a su color dominante
+     * @param fila fila que queremos calcular el puntaje
+     * @return el cálculo de esa fila
+     */
     public int calcularPuntajePorFila(int fila){
         this.fila = fila;
         puntajePorFila = 0;
@@ -155,6 +202,13 @@ public class Tablero {
         puntajeFinal += puntajePorFila;
         return puntajePorFila;
     }
+    /**
+     * Metodo recursivo para encontrar el color que más se repite en una fila
+     * @param color la pieza que esta cayendo y queremos posicionar
+     * @param indice indica que posición de la lista de colores se está calculando
+     * @param mejorColor guarda el contador encontrado más alto
+     * @return nombre del color dominante
+     */
     public String getColorDominante(String color, int indice, String mejorColor){
                 int contador = 0;
                 for (int i = 0; i < tablero[fila].length; i++){
@@ -174,13 +228,17 @@ public class Tablero {
             }
         return getColorDominante(color, indice + 1, mejorColor);
     }
+        /**
+     * Metodo que retorna el puntaje de todas las filas eliminadas
+     * @return el puntaje final
+     */
     public int getPuntajeFinal(){
         return puntajeFinal;
     }
 
     public void actualizarTablero(Pieza pieza) {
     String[][] copia = new String[tablero.length][tablero[0].length];
-    System.out.println("aquí bien");
+    
 
     // Copiamos el tablero actual
     for (int i = 0; i < tablero.length; i++) {
@@ -218,7 +276,10 @@ public class Tablero {
     }
     
 }
-
+    /**
+     * Metodo que inicializa el tablero como vacío para empezar el juego
+     * 
+     */
     public void iniciarTablero(){
         for (int i = 0; i < tablero.length; i++){
             for (int j = 0; j < tablero[0].length; j++){
