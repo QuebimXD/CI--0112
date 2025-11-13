@@ -74,11 +74,6 @@ public class Tablero {
                 }
             }
         this.pieza = new Pieza();
-        for (int f = 0; f < tablero.length; f++) {
-            if (verificarFilallena(f)) {
-            eliminarFila(f);
-             }   
-        }
     }
     public void moverPieza(Pieza pieza, String movimiento){
         int fila = pieza.getFila();
@@ -133,17 +128,20 @@ public class Tablero {
         }
     }
     private void eliminarFilaR(int fila){
+        //Caso base: cuando llegamos a la primera fila
         if(fila == 0){
+            System.out.println("Llegue");
             for(int i = 0; i < tablero[0].length; i++){
                 tablero[fila][i] = "-";
             }
             return;
         }
-            for(int i = 0; i < tablero[fila].length; i++){
+            for(int i = 0; i < tablero[0].length; i++){
                 int nuevaFila = fila -1; 
-                    tablero[fila][i] = tablero[nuevaFila][i];
+                    String temp = tablero[nuevaFila][i];
+                    tablero[fila][i] = temp;
             }
-            eliminarFila(fila-1);
+            eliminarFilaR(fila-1);
     }
     public int calcularPuntajePorFila(int fila){
         this.fila = fila;
@@ -182,6 +180,7 @@ public class Tablero {
 
     public void actualizarTablero(Pieza pieza) {
     String[][] copia = new String[tablero.length][tablero[0].length];
+    System.out.println("aquí bien");
 
     // Copiamos el tablero actual
     for (int i = 0; i < tablero.length; i++) {
@@ -215,7 +214,9 @@ public class Tablero {
             }
         }
         System.out.println();
+        
     }
+    
 }
 
     public void iniciarTablero(){
