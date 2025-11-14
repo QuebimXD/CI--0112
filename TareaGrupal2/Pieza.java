@@ -172,6 +172,10 @@ public class Pieza{
         pieza = nuevo;
     }
 
+    /**
+     * Metodo encargado de rotar la pieza
+     * @param tablero tablero principal en el que se esta jugando
+     */
     public void rotarPiezaSinBugs(Tablero tablero){
 
         Bloque[][] original = copiarBloque(this.pieza);
@@ -193,7 +197,12 @@ public class Pieza{
             this.pieza = original;
         }
     }
-    //HACER JAVADOC
+    
+    /**
+     * Metodo que crea una copia de cada uno de los bloques que contiene la pieza
+     * @param matriz matris donde se encuentra el bloque original
+     * @return retorna la copia de los bloques
+     */
     public Bloque[][] copiarBloque(Bloque[][] matriz) {
         Bloque[][] copia = new Bloque[matriz.length][matriz[0].length];
         for (int i = 0; i < matriz.length; i++) {
