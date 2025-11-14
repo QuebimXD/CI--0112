@@ -17,6 +17,7 @@ public class Menu {
     public Menu() {
         sc = new Scanner(System.in);
         int opt = 0;
+        juego = new Juego();
 
         while(opt != 3) {
             System.out.println("1- Nueva Partida\n2- Ver puntaje\n3- Salir");

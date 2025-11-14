@@ -133,7 +133,7 @@ public class Juego{
 
     /**
      *Metodo que le pregunta al usuario que movimiento quiere realizar, w rota, a izquierda, d dereca, s va hacia abajo. Tambien maneja errores por si el ususario no ha digitado una leta de movimiento.
-     *@ return la letra del movimiento seleccionada por el usuario.
+     *@return la letra del movimiento seleccionada por el usuario.
      */
     private String movimientoUsuario(){
         String mov = null;

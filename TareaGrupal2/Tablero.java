@@ -314,4 +314,88 @@ public class Tablero {
             }
         }
     }
+
+
+    public void buscarYEliminarVerticales() {
+
+    for (int col = 0; col < tablero[0].length; col++) {
+        int consecutivos = 1;
+
+        for (int fila = 19; fila > 0; fila--) {
+
+            String abajo = tablero[fila][col];
+            String arriba = tablero[fila-1][col];
+
+            // Solo colores válidos
+            if (!abajo.equals("-") && abajo.equals(arriba)) {
+                consecutivos++;
+            } else {
+                consecutivos = 1;
+            }
+
+            // ¿Llegamos a 4?
+            if (consecutivos == 4) {
+            //String colorDominante = getColorDominante(fila, 0, colores[0], 0);
+            //arbolColor.actualizarFrecuencia(colorDominante, 1);
+            //int puntosBase = arbolColor.posicionColor(colorDominante);
+            //puntajeFinal += puntosBase;
+
+                // fila actual es la 1ra fila del grupo
+                
+                int f1 = fila - 1;
+
+                String colorDominante = getColorDominante(f1, 0, colores[0], 0);
+                arbolColor.actualizarFrecuencia(colorDominante, 1);
+                int puntosBase = arbolColor.posicionColor(colorDominante);
+                puntajeFinal += puntosBase;
+
+
+                int f2 = fila;  
+                colorDominante = getColorDominante(f2, 0, colores[0], 0);
+                arbolColor.actualizarFrecuencia(colorDominante, 1);
+                puntosBase = arbolColor.posicionColor(colorDominante);
+                puntajeFinal += puntosBase;
+
+                int f3 = fila + 1;
+                colorDominante = getColorDominante(f3, 0, colores[0], 0);
+                arbolColor.actualizarFrecuencia(colorDominante, 1);
+                puntosBase = arbolColor.posicionColor(colorDominante);
+                puntajeFinal += puntosBase;
+
+                int f4 = fila + 2;
+                colorDominante = getColorDominante(f4, 0, colores[0], 0);
+                arbolColor.actualizarFrecuencia(colorDominante, 1);
+                puntosBase = arbolColor.posicionColor(colorDominante);
+                puntajeFinal += puntosBase;
+
+                // Eliminar estas filas COMPLETAS
+                eliminarFilaForzada(f1);
+                eliminarFilaForzada(f2);
+                eliminarFilaForzada(f3);
+                eliminarFilaForzada(f4);
+
+                // Reiniciar búsqueda por seguridad
+                fila = 19;
+                consecutivos = 1;
+            }
+        }
+    }
+}
+
+    private void eliminarFilaForzada(int fila) {
+    if (fila == 0) {
+        for (int j = 0; j < tablero[0].length; j++) {
+            tablero[0][j] = "-";
+        }
+        return;
+    }
+
+    for (int j = 0; j < tablero[0].length; j++) {
+        tablero[fila][j] = tablero[fila - 1][j];
+    }
+
+    eliminarFilaForzada(fila - 1);
+}
+
+
 }
