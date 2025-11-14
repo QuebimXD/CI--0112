@@ -15,6 +15,9 @@ public class Tablero {
     private int contadorDominante;
     private String [] colores; 
 
+    /**
+     * Metodo constructor que inicializa el tablero, el arbol, la pieza y se trae los colores de la pieza a utilizar.
+     */
     public Tablero(ArbolColores a){
         this.arbolColor = a;
         tablero = new String[20][10];
@@ -25,9 +28,17 @@ public class Tablero {
         //actualizarTablero();
     }
 
+    /**
+     * Metodo que retorna la lista de colores que se tiene por predeterminado en el tablero.
+     * @return la lista de colores
+     */
     public String[] getColoresT(){
         return colores;
     }
+    /**
+     * Metodo fijo que cambia el puntaje final del jugador
+     * @param p el puntaje del jugador
+     */
     public void setPuntajeFinal(int p){
         this.puntajeFinal = p;
     }
@@ -64,6 +75,10 @@ public class Tablero {
         return false;
     }
 
+    /**
+     * Metodo que dictamina la colosion total del juego, determina si hay espacio para generar otra pieza o se debe terminar el juego.
+     * @param pieza pieza que se comparara con el espacio que hay en el tablero
+     */
     public boolean finalizaJuego(Pieza pieza){
         boolean estado = false; //no ha finalizado el juego
         int contador = 0;
@@ -261,7 +276,10 @@ public class Tablero {
     }
     
     
-
+    /**
+     * Metodo encargado de volver a generar el tablero en el que el jugador podra jugar, se encarga de dejar fijas a las piezas ya colocadas e imprimir el tablero.
+     * @param pieza la pieza actual del tablero que debe quedar fija.
+     */
     public void actualizarTablero(Pieza pieza) {
     String[][] copia = new String[tablero.length][tablero[0].length];
     // Copiamos el tablero actual
@@ -315,7 +333,10 @@ public class Tablero {
         }
     }
 
-
+    /**
+     * Metodo encargado de verificar las filas de cuatro colores y eliminarlas completas cuando esta regla se cumple, ademas se encarga de calcular los puntos por cada fila eliminada
+     * 
+     */
     public void buscarYEliminarVerticales() {
 
     for (int col = 0; col < tablero[0].length; col++) {
@@ -335,10 +356,6 @@ public class Tablero {
 
             // ¿Llegamos a 4?
             if (consecutivos == 4) {
-            //String colorDominante = getColorDominante(fila, 0, colores[0], 0);
-            //arbolColor.actualizarFrecuencia(colorDominante, 1);
-            //int puntosBase = arbolColor.posicionColor(colorDominante);
-            //puntajeFinal += puntosBase;
 
                 // fila actual es la 1ra fila del grupo
                 
@@ -381,7 +398,10 @@ public class Tablero {
         }
     }
 }
-
+    /**
+     * Metodo metodo donde elimina completamente las filas especificas donde sean necesaria solo verificar verticales
+     * @param fila fila especifica que deseamos eliminar
+     */
     private void eliminarFilaForzada(int fila) {
     if (fila == 0) {
         for (int j = 0; j < tablero[0].length; j++) {
