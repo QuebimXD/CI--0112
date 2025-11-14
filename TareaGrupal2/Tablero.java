@@ -15,7 +15,8 @@ public class Tablero {
     private int contadorDominante;
     private String [] colores; 
 
-    public Tablero(){
+    public Tablero(ArbolColores a){
+        this.arbolColor = a;
         tablero = new String[20][10];
         pieza = new Pieza();
         colores = pieza.getColores();
@@ -23,6 +24,22 @@ public class Tablero {
         iniciarTablero();
         //actualizarTablero();
     }
+
+    public String[] getColoresT(){
+        return colores;
+    }
+    public void setPuntajeFinal(int p){
+        this.puntajeFinal = p;
+    }
+
+    /**
+     * Metodo que retorna el puntaje de todas las filas eliminadas
+     * @return el puntaje final
+     */
+    public int getPuntajeFinal(){
+        return puntajeFinal;
+    }
+
     /**
      * Metodo que retorna si la pieza ha chocado o se ha salido del tablero
      * @param pieza la pieza que esta cayendo y queremos posicionar
@@ -81,7 +98,7 @@ public class Tablero {
                         int filaB = x + i; 
                         int colB = y + j;
                         if(filaB >= 0 && colB >= 0 && filaB < tablero.length && colB < tablero[0].length){
-                            tablero[filaB][colB] = pieza.getColorAnsi(bloque.getColor()) + "*" + "\u001B[0m";
+                            tablero[filaB][colB] = bloque.getColor(); //CAMBIO
                         }
                     } 
                 }
@@ -114,6 +131,9 @@ public class Tablero {
                 break;
         }
         if(colisionoPieza(pieza, fila, col)){
+            if(movimiento.equals("a") || movimiento.equals("d")){
+                return; 
+            }
             int filaFinal =pieza.getFila();
             int colFinal = pieza.getColumna();
             agregarPieza(pieza, filaFinal, colFinal);
@@ -191,17 +211,25 @@ public class Tablero {
      * @return el cálculo de esa fila
      */
     public int calcularPuntajePorFila(int fila){
-        this.fila = fila;
-        puntajePorFila = 0;
-        String colorDominante = "";
-        contadorDominante = 0;
-        if (verificarFilallena(fila)){
-            colorDominante = getColorDominante(colores[0], 0, colores[0]);
-            puntajePorFila = arbolColor.posicionColor(colorDominante);
+                if (!verificarFilallena(fila)) {
+                return 0;
+            }
+
+            // Obtener el color dominante correctamente
+            String colorDominante = getColorDominante(fila, 0, colores[0], 0);
+
+            // Actualizar frecuencia en el árbol
+            arbolColor.actualizarFrecuencia(colorDominante, 1);
+
+            // Obtener puntos base según posición en el árbol
+            int puntosBase = arbolColor.posicionColor(colorDominante);
+
+            // Sumar al puntaje total del tablero
+            puntajeFinal += puntosBase;
+
+            return puntosBase;
         }
-        puntajeFinal += puntajePorFila;
-        return puntajePorFila;
-    }
+
     /**
      * Metodo recursivo para encontrar el color que más se repite en una fila
      * @param color la pieza que esta cayendo y queremos posicionar
@@ -209,37 +237,33 @@ public class Tablero {
      * @param mejorColor guarda el contador encontrado más alto
      * @return nombre del color dominante
      */
-    public String getColorDominante(String color, int indice, String mejorColor){
-                int contador = 0;
-                for (int i = 0; i < tablero[fila].length; i++){
-                    if(tablero[fila][i].equals(color) && tablero[fila][i] != null){
-                        contador++;
-                    }
-                }
-                if(contador > contadorDominante){
-                    contadorDominante = contador; 
-                    mejorColor = color;
-                }
-                if(indice == colores.length - 1){
-                    return mejorColor;
-                }
-                if(indice + 1 < colores.length){
-                color = colores[indice + 1];
+    public String getColorDominante(int filaReal, int indice, String mejorColor, int mejorConteo){
+              
+        if (indice == colores.length) {
+            return mejorColor;
+        }
+
+        String colorActual = colores[indice];
+        int conteo = 0;
+
+        for (int i = 0; i < tablero[filaReal].length; i++) {
+            if (tablero[filaReal][i] != null && tablero[filaReal][i].equals(colorActual)) {
+                conteo++;
             }
-        return getColorDominante(color, indice + 1, mejorColor);
+        }
+
+        if (conteo > mejorConteo) {
+            mejorConteo = conteo;
+            mejorColor = colorActual;
+        }
+
+        return getColorDominante(filaReal, indice + 1, mejorColor, mejorConteo);
     }
-        /**
-     * Metodo que retorna el puntaje de todas las filas eliminadas
-     * @return el puntaje final
-     */
-    public int getPuntajeFinal(){
-        return puntajeFinal;
-    }
+    
+    
 
     public void actualizarTablero(Pieza pieza) {
     String[][] copia = new String[tablero.length][tablero[0].length];
-    
-
     // Copiamos el tablero actual
     for (int i = 0; i < tablero.length; i++) {
         for (int j = 0; j < tablero[0].length; j++) {
@@ -247,7 +271,7 @@ public class Tablero {
         }
     }
 
-    // Dibujamos la pieza temporalmente (con colores y *)
+    
     for (int i = 0; i < pieza.getPieza().length; i++) {
         for (int j = 0; j < pieza.getPieza()[i].length; j++) {
             Bloque b = pieza.getPieza()[i][j];
@@ -255,7 +279,7 @@ public class Tablero {
                 int fila = pieza.getFila() + i;
                 int col = pieza.getColumna() + j;
                 if (fila >= 0 && fila < tablero.length && col >= 0 && col < tablero[0].length) {
-                    copia[fila][col] = pieza.getColorAnsi(b.getColor()) + "*" + "\u001B[0m";
+                    copia[fila][col] = b.getColor(); //CAMBIO
                 }
             }
         }
@@ -265,16 +289,19 @@ public class Tablero {
     for (int i = 0; i < copia.length; i++) {
         for (int j = 0; j < copia[0].length; j++) {
             String celda = copia[i][j];
-            if (celda == null || celda.equals(" ")) {
+
+            if (celda == null) {
                 System.out.print("  ");
-            } else {
+            }else if(celda.equals("-")){
+                System.out.print("-");
+            }else if (celda.startsWith("\u001B")) { 
                 System.out.print(celda);
+            } else {
+                System.out.print(pieza.getColorAnsi(celda) + "*" + "\u001B[0m"); //CAMBIO
             }
         }
         System.out.println();
-        
     }
-    
 }
     /**
      * Metodo que inicializa el tablero como vacío para empezar el juego

@@ -10,13 +10,17 @@ public class Juego{
     private Tablero tablero;
     private ArbolColores arbol;
     private Pieza p;
-
+    private int puntaje;
     /*
      * Constructor de clase Juego. Inicializa el tablero, el arbol con la lista de los colores junto a una frecuencia inicial de cero, y el escaner.
      */
     public Juego(){
         sc = new Scanner(System.in);
         p = new Pieza(); //Esta pieza solo para llamar a la lista de colores
+    }
+
+    public int obtenerPuntaje(){
+        return puntaje;
     }
 
     /**
@@ -32,8 +36,8 @@ public class Juego{
         boolean seguirJugando = true;
         while(seguirJugando){
 
-            tablero = new Tablero();
-            arbol = new ArbolColores(p.getColores());
+            arbol = new ArbolColores(p.getColores()); // 1. crear árbol
+            tablero = new Tablero(arbol);
 
             boolean juega = true;
 
@@ -51,7 +55,7 @@ public class Juego{
                     String mov = movimientoUsuario();
 
                     if(mov.equals("r")){
-                        pieza.rotarPieza();
+                        pieza.rotarPiezaSinBugs(tablero);
                     }else{
                         tablero.moverPieza(pieza, mov); //Por hacer
                     }
@@ -67,10 +71,36 @@ public class Juego{
                     //Fijamos la pieza en donde se encuentre actualmente
                     tablero.agregarPieza(pieza, pieza.getFila(), pieza.getColumna());
                     //Eliminamos las filas llenas y hacemos la logica de ir calculando el puntaje
+
+                    int combo = 1;
+                    String ultimoColor = "";
+
                     for(int f = 19; f >= 0; f--){
+                        
                         if(tablero.verificarFilallena(f)){
-                            tablero.eliminarFila(f);
-                            tablero.calcularPuntajePorFila(f);
+
+                            int puntos = tablero.calcularPuntajePorFila(f);
+
+                            if (puntos > 0) {
+                                // obtener color dominante real
+                                String color = tablero.getColorDominante(f, 0, tablero.getColoresT()[0], 0);
+
+                                // combo
+                                if (color.equals(ultimoColor)) {
+                                    combo++;
+                                } else {
+                                    combo = 1;
+                                }
+
+                                // aplicar combo
+                                tablero.setPuntajeFinal(tablero.getPuntajeFinal() + puntos * (combo - 1));
+
+                                ultimoColor = color;
+
+                                // eliminar fila
+                                tablero.eliminarFila(f);
+                            }
+
                         }
                     }
                 }
@@ -126,7 +156,4 @@ public class Juego{
         return mov;
     }
 
-    public int obtenerPuntaje(){
-        return tablero.getPuntajeFinal();
-    }
 }

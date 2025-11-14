@@ -94,9 +94,11 @@ public class ArbolColores{
         NodoArbol nodo = buscar(c);
         
         if(nodo!= null){
-            nodo.setFrecuencia(nodo.getFrecuencia() + frec);
+           int nuevaFrec = nodo.getFrecuencia() + frec;
             this.raiz = eliminar(this.raiz, c);
-            this.raiz = agregar(this.raiz, nodo);
+            NodoArbol nuevo = new NodoArbol(c);
+            nuevo.setFrecuencia(nuevaFrec);
+            this.raiz = agregar(this.raiz, nuevo);
         }
     }
 

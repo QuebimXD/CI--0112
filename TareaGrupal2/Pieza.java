@@ -5,13 +5,11 @@
  */
 
 public class Pieza{
-    
     private String nombre;
     private int fila;
     private int columna;
     private Bloque[][] pieza;  //inicialmente
     private Bloque[] bloques; // los 4 bloques con su color aleatorio
-    //private int posicionBloque;
     private String [] colores = {"rojo", "amarillo", "verde", "morado", "azul", "naranja"};
 
     /**
@@ -57,6 +55,10 @@ public class Pieza{
      */
     public Bloque[][] getPieza(){
         return pieza;
+    }
+
+    public void setPieza(Bloque[][] p){
+        this.pieza = p;
     }
 
     /**
@@ -112,7 +114,7 @@ public class Pieza{
             case "morado":
              return "\u001B[35m";
             case "naranja":
-             return "\u001B[91m";
+             return "\u001B[38;5;208m";
             default:
              return "";
         }
@@ -169,4 +171,37 @@ public class Pieza{
         }
         pieza = nuevo;
     }
+
+    public void rotarPiezaSinBugs(Tablero tablero){
+
+        Bloque[][] original = copiarBloque(this.pieza);
+        rotarPieza();
+        int fila = this.fila;
+        int col = this.columna;
+
+        if (tablero.colisionoPieza(this, fila, col)) {
+
+            this.columna++;
+            if (!tablero.colisionoPieza(this, fila, this.columna)) {
+                return;
+            }
+            this.columna -= 2; 
+            if (!tablero.colisionoPieza(this, fila, this.columna)) {
+                return;
+            }
+            this.columna++; // volver a posicion original
+            this.pieza = original;
+        }
+    }
+    //HACER JAVADOC
+    public Bloque[][] copiarBloque(Bloque[][] matriz) {
+        Bloque[][] copia = new Bloque[matriz.length][matriz[0].length];
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                copia[i][j] = matriz[i][j];
+            }
+        }
+        return copia;
+    }
+
 }
