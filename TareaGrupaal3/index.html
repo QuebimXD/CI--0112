@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portafolio – Elian Herrera</title>
+
+  <!-- Tipografía de Google (opcional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="styles/style.css" />
+</head>
+<body>
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo">
+        <span class="logo-mark">&lt;/&gt;</span>
+        <span class="logo-text">Portafolio</span>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO / INICIO ===== -->
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="hero-greeting">Hola, soy</p>
+          <h1 class="hero-name">Elian Herrera Mora</h1>
+          <p class="hero-role">Estudiante de Ingeniería en Computación</p>
+          <p class="hero-description">
+            Desarrollador Jr. interesado en Java, desarrollo web y resolución de problemas algorítmicos.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#proyectos" class="btn btn-primary">Ver proyectos</a>
+            <a href="#contacto" class="btn btn-outline">Contactarme</a>
+          </div>
+        </div>
+
+        <div class="hero-photo">
+          <img src="assets/perfil.jpg" alt="Foto de perfil de Elian" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SOBRE MÍ ===== -->
+    <section id="sobre-mi" class="section">
+      <div class="container">
+        <h2 class="section-title">Sobre mí</h2>
+        <p class="section-description">
+          Soy estudiante de Ingeniería en Computación en la Universidad de Costa Rica.
+          Me interesan el desarrollo de software, las estructuras de datos y los
+          proyectos que combinan programación con matemáticas aplicadas.
+        </p>
+        <p>
+          He trabajado principalmente con <strong>Java</strong> y
+          <strong>Python</strong>, y en este curso he empezado a fortalecer mis
+          bases en programación estructurada, diseño de algoritmos y buenas
+          prácticas con Git y GitHub.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== HABILIDADES ===== -->
+    <section id="habilidades" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Habilidades</h2>
+        <p class="section-description">
+          Tecnologías y herramientas con las que he trabajado.
+        </p>
+
+        <div class="skills-grid">
+          <span class="skill-chip">Java</span>
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">HTML</span>
+          <span class="skill-chip">CSS</span>
+          <span class="skill-chip">JavaScript</span>
+          <span class="skill-chip">Git</span>
+          <span class="skill-chip">GitHub</span>
+          <span class="skill-chip">VS Code</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROYECTOS ===== -->
+    <section id="proyectos" class="section">
+      <div class="container">
+        <h2 class="section-title">Proyectos</h2>
+        <p class="section-description">
+          Algunos proyectos desarrollados en el curso y tareas relacionadas.
+        </p>
+
+        <div class="projects-grid">
+          <!-- Proyecto 1 -->
+          <article class="project-card">
+            <img
+              src="assets/proyecto1.png"
+              alt="Captura del Proyecto 1"
+              class="project-image"
+            />
+            <div class="project-content">
+              <h3 class="project-title">Tarea Programada 1 – Juego de Dados</h3>
+              <p class="project-description">
+                Implementación de un juego de dados en Java, trabajando con estructuras de control,
+                generación de números aleatorios y manejo de entrada estándar.
+              </p>
+              <p class="project-tech">
+                <strong>Tecnologías:</strong> Java
+              </p>
+              <a
+                href="https://github.com/usuario/tp1-juego-dados"
+                target="_blank"
+                class="project-link"
+                >Ver en GitHub</a
+              >
+            </div>
+          </article>
+
+          <!-- Proyecto 2 -->
+          <article class="project-card">
+            <img
+              src="assets/proyecto2.png"
+              alt="Captura del Proyecto 2"
+              class="project-image"
+            />
+            <div class="project-content">
+              <h3 class="project-title">Tarea Programada 2 – Gestor de Inventario</h3>
+              <p class="project-description">
+                Sistema de inventario en Java que permite registrar, buscar y eliminar productos,
+                practicando el uso de clases, listas y manejo básico de archivos.
+              </p>
+              <p class="project-tech">
+                <strong>Tecnologías:</strong> Java
+              </p>
+              <a
+                href="https://github.com/usuario/tp2-inventario"
+                target="_blank"
+                class="project-link"
+                >Ver en GitHub</a
+              >
+            </div>
+          </article>
+
+          <!-- Proyecto 3 -->
+          <article class="project-card">
+            <img
+              src="assets/proyecto3.png"
+              alt="Captura del Proyecto 3"
+              class="project-image"
+            />
+            <div class="project-content">
+              <h3 class="project-title">Calculadora de Interés – App Web</h3>
+              <p class="project-description">
+                Pequeña aplicación web que calcula montos de inversión e interés simple/compuesto.
+                Permite practicar HTML, CSS y JavaScript básico.
+              </p>
+              <p class="project-tech">
+                <strong>Tecnologías:</strong> HTML, CSS, JavaScript
+              </p>
+              <a
+                href="https://github.com/usuario/calculadora-interes"
+                target="_blank"
+                class="project-link"
+                >Ver en GitHub</a
+              >
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Contacto</h2>
+        <p class="section-description">
+          Si desea contactarme para colaboraciones o proyectos, puede usar los siguientes medios:
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-item">
+            <h3>Correo</h3>
+            <p>
+              <a href="mailto:elian.herrera@ucr.ac.cr">elian.herrera@ucr.ac.cr</a>
+            </p>
+          </div>
+
+          <div class="contact-item">
+            <h3>GitHub</h3>
+            <p>
+              <a href="https://github.com/usuario" target="_blank">github.com/usuario</a>
+            </p>
+          </div>
+
+          <div class="contact-item">
+            <h3>LinkedIn</h3>
+            <p>
+              <a href="https://www.linkedin.com/in/usuario" target="_blank"
+                >linkedin.com/in/usuario</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECCIÓN "COSAS APRENDIDAS" (DOCUMENTACIÓN) ===== -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Cosas aprendidas</h2>
+        <p>
+          En este proyecto aprendí a trabajar con la estructura básica de un sitio web
+          usando <strong>HTML</strong> y <strong>CSS</strong>, así como a organizar
+          archivos en carpetas (styles, assets y scripts). También configuré un
+          repositorio en <strong>GitHub</strong> y publiqué el sitio usando
+          <strong>GitHub Pages</strong>, entendiendo mejor el flujo de trabajo con
+          commits y ramas.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© 2025 Elian Herrera – Portafolio Personal</p>
+      <p>Construido para la Tarea Programada 3 – CI-0112 Programación 1.</p>
+    </div>
+  </footer>
+
+  <!-- JS opcional -->
+  <script src="scripts/main.js"></script>
+</body>
+</html>
